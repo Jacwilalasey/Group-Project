@@ -1,0 +1,109 @@
+html {
+    background-color: #8d3737 ;
+}
+
+body {
+    color: lightcoral;
+}
+
+.hero {
+    background-color: #000000;
+    /* background: url(../images/weatherbanner.png);
+    background-repeat: no-repeat;
+    background-size: auto; */
+}
+
+.title {
+    /* background: url(../images/transparency.png); */
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 3px;
+}
+
+input {
+    margin-top: 30px;
+}
+
+#search-section {
+    padding-top: 15px;
+}
+
+/* .genre-container h3 {
+    text-align: center;
+} */
+
+#submit {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+#submit:hover {
+    background-color: lightgreen;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+#random-btn {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+#random-btn:hover {
+    background-color: lightcoral;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+#genre-btn {
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius: 10px;
+}
+
+#search-data {
+    background-color:#525252;
+    border: 2px solid #e8e8e8;
+    color: #e8e8e8;
+    padding: 15px;
+    margin: 30px 0px;
+    border-radius: 10px;
+    min-height: 89%;
+    width: 100%;
+}
+
+#cover {
+    width: 90%;
+    height: 90%;
+    border: 2px solid red;
+}
+
+#movie-name {
+    color: #b7b7b7;
+}
+
+#date-made {
+    color: #b7b7b7;
+}
+
+#budget {
+    color: #b7b7b7;
+}
+
+#director {
+    color: #b7b7b7;
+}
+
+#producer {
+    color: #b7b7b7;
+}
