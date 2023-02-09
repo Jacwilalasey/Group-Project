@@ -1,5 +1,50 @@
 $(document).ready(function () {
+  //  trying to get the randomise function working, also need the buttons populated randomly on load 
 
+let randomMovie =  [
+  "The Dark Knight",
+  "Die Hard",
+  "Raiders of the Lost Ark",
+  "Lethal Weapon",
+  "Terminator 2: Judgment Day",
+  "RoboCop",
+  "Aliens",
+  "The Matrix",
+  "The Matrix Reloaded",
+  "The Matrix Revolutions",
+  "The Terminator",
+  "Gladiator",
+  "The Lord of the Rings: The Fellowship of the Ring",
+  "The Lord of the Rings: The Two Towers",
+  "The Lord of the Rings: The Return of the King",
+  "The Incredible Hulk",
+  "The Avengers",
+  "The Avengers: Age of Ultron",
+  "The Avengers: Infinity War",
+  "The Avengers: Endgame"
+];
+
+
+let genreBtn = document.querySelectorAll(".randomButton");
+console.log(genreBtn);
+
+function randomise() {
+// genreBtn.innerHTML = randomMovie[Math.floor(Math.random() * randomMovie.length)];
+
+for (let i = 0; i < genreBtn.length; i++) {
+ let movie = randomMovie[Math.floor(Math.random() * randomMovie.length)];
+
+ if (genreBtn[i].innerHTML === movie) {
+  randomise();
+ } else {
+  genreBtn[i].innerHTML = movie;
+ }
+}
+};
+
+randomise();
+
+document.getElementById("random-btn").addEventListener("click", randomise);
   console.log('hello world')
 
   // Global Variables
@@ -61,14 +106,12 @@ $(document).ready(function () {
       })
   });
 
-  // ty
-
 });
 
 
 //  trying to get the randomise function working, also need the buttons populated randomly on load 
 
-// let randGenres = [
+// let randomMovie = [
 //     "Action",
 //     "Comedy",
 //     "Thriller",
@@ -83,18 +126,7 @@ $(document).ready(function () {
 // ];
 
 
-let genreBtn = document.querySelectorAll(".button");
-console.log(genreBtn);
 
-function randomise() {
-// genreBtn.innerHTML = randGenres[Math.floor(Math.random() * randGenres.length)];
-
-for (let i = 0; i < genreBtn.length; i++) {
-  genreBtn[i].innerHTML = randGenres[Math.floor(Math.random() * randGenres.length)];
-}
-};
-
-document.getElementById("random-btn").addEventListener("click", randomise);
 
 
 
