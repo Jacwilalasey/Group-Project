@@ -1,0 +1,114 @@
+html {
+    background-color: #8d99ae ;
+}
+
+.hero {
+    background: url(../images/bg.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-bottom: 10px solid #ef233c;
+}
+
+.title {
+
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 3px;
+    font-size;
+}
+
+input {
+    margin-top: 30px;
+}
+
+#search-section {
+    padding-top: 15px;
+}
+
+#submit {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+#submit:hover {
+    background-color: #edede9;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+#random-btn {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+#random-btn:hover {
+    background-color: #edede9;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+#genre-btn {
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius: 10px;
+}
+
+#search-data {
+    background-color:#edede9;
+    border: 2px solid #2b2d42;
+    color: #000000;
+    padding: 15px;
+    margin: 30px 0px;
+    border-radius: 10px;
+    min-height: 89%;
+    width: 100%;
+}
+
+#cover {
+    width: 90%;
+    height: 100%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#movie-name {
+    color: #525252;
+}
+
+#date-made {
+    color: #525252;
+}
+
+#budget {
+    color: #525252;
+}
+
+#director {
+    color: #525252;
+}
+
+#producer {
+    color: #525252;
+}
+
+#actors {
+    display: inline-block;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0px 38px 0px 38px;
+    border: 2px solid #2b2d42;
+    background-color: #8d99ae;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <title>TBD</title>
+</head>
+
+<body>
+    <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">Movie Soundtrack/Details Database</h1>
+          </div>
+        </div>
+    </section>
+
+    <!-- search and main return section-->
+    <!-- search button -->
+    <section id="search-section">
+        <div class="container">
+          <div class="columns">
+            <div class="column is-one-quarter content">
+              <form>
+                <input
+                  id="movie-input"
+                  class="input is-info"
+                  type="text"
+                  placeholder="Scarface"
+                />
+                <button id="submit" class="button" type="submit">
+                  Get Movie Info
+                </button>
+              </form>
+            
+            <!-- list of searchable genres and randomise genres button -->
+            <div class="box table-box">
+                <div class="genre-container">
+                    <h3>Search by Genre</h3>
+                    <button id="genre-btn" class="button"></button>
+                    <button id="genre-btn" class="button"></button>
+                    <button id="genre-btn" class="button"></button>
+                    <button onclick="randGenres()" id="random-btn" class="button">Randomise</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- query return box -->
+        <div class="column">
+            <div id="search-data" class="columns box content">
+                <div class="column">
+                    <div id="cover">MOVIE COVER IMAGE</div>
+                </div>
+                <div class="column current-movie-data">
+                    <h2 id="movie-name">movie name</h2>
+                    <h4 id="date-made">date made</h4>
+                    <h4 id="budget">budget</h4>
+                    <h4 id="director">director</h4>
+                    <h4 id="producer">producer</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- actor return section -->
+    <section class="container-fluid" id="actors">
+        <div class="row mt-3 text-left">
+          <div class="col-md-3 col-sm-1 mb-1" id="actor-list">
+            <div class="card card-actors bg-transparent shadow">
+              <div class="card-body">
+                <h5 class="card-image" id="image"></h5>
+                <p class="card-text text-center" id='name'></p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+        
+
+
+
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
