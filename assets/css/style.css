@@ -1,5 +1,5 @@
 html {
-    background-color: #8d99ae ;
+    background-color: #8d99ae;
 }
 
 .hero {
@@ -15,7 +15,7 @@ html {
     text-align: center;
     border-radius: 10px;
     padding: 3px;
-    font-size;
+    /* font-size; */
 }
 
 input {
@@ -64,7 +64,7 @@ input {
 }
 
 #search-data {
-    background-color:#edede9;
+    background-color: #edede9;
     border: 2px solid #2b2d42;
     color: #000000;
     padding: 15px;
@@ -111,4 +111,11 @@ input {
     width: 300px;
     height: 300px;
     border-radius: 10px;
+}
+
+button {
+    display: block;
+    padding: 5px;
+    margin: 10px;
+    width: 100px;
 }
