@@ -29,18 +29,27 @@ let randomMovie =  [
 let genreBtn = document.querySelectorAll(".randomButton");
 
 // Function to pick a random movie from the array and append to the button
-function randomise() {
 
-    for (let i = 0; i < genreBtn.length; i++) {
+
+// Array to keep track of movies that have already been appended to the buttons
+let usedMovies = [];
+
+// Function to pick a random movie from the array and append to the button
+function randomise() {
+  for (let i = 0; i < genreBtn.length; i++) {
     let movie = randomMovie[Math.floor(Math.random() * randomMovie.length)];
 
-    if (genreBtn[i].innerHTML === movie) {
-    randomise();
+    if (usedMovies.includes(movie)) {
+      // If the movie has already been used, pick another movie
+      randomise();
     } else {
-    genreBtn[i].innerHTML = movie;
+      // If the movie has not been used, append it to the button and add it to the usedMovies array
+      genreBtn[i].innerHTML = movie;
+      usedMovies.push(movie);
     }
-    }
-};
+  }
+}
+
 
 // called the function to pick a random movie from the array and append to the button when page loads
 randomise();
