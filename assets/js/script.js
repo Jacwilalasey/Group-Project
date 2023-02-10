@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  //  trying to get the randomise function working, also need the buttons populated randomly on load 
+  //  Array of movies to be randomised when page loads 
 
 let randomMovie =  [
   "The Dark Knight",
@@ -24,28 +24,30 @@ let randomMovie =  [
   "The Avengers: Endgame"
 ];
 
+// Assigned all movie buttons to a variable 
 
 let genreBtn = document.querySelectorAll(".randomButton");
-console.log(genreBtn);
 
+// Function to pick a random movie from the array and append to the button
 function randomise() {
-// genreBtn.innerHTML = randomMovie[Math.floor(Math.random() * randomMovie.length)];
 
-for (let i = 0; i < genreBtn.length; i++) {
- let movie = randomMovie[Math.floor(Math.random() * randomMovie.length)];
+    for (let i = 0; i < genreBtn.length; i++) {
+    let movie = randomMovie[Math.floor(Math.random() * randomMovie.length)];
 
- if (genreBtn[i].innerHTML === movie) {
-  randomise();
- } else {
-  genreBtn[i].innerHTML = movie;
- }
-}
+    if (genreBtn[i].innerHTML === movie) {
+    randomise();
+    } else {
+    genreBtn[i].innerHTML = movie;
+    }
+    }
 };
 
+// called the function to pick a random movie from the array and append to the button when page loads
 randomise();
 
+// added event listener to the randomise button to randomly pick a movie from the array and append to each button
 document.getElementById("random-btn").addEventListener("click", randomise);
-  console.log('hello world')
+
 
   // Global Variables
 
