@@ -4,67 +4,97 @@ $(document).ready(function () {
 
     // Global Variables
 
-    let url = "https://movie-database-alternative.p.rapidapi.com/";
-    let apiKey = "e63e384093mshf6ec0c8a4eb5556p1c46afjsn531a89eba378";
+    let url = 'http://www.omdbapi.com/?s=';
+    let url2 = 'http://www.omdbapi.com/?i='
+    let apiKey = "1fcd68b1&";
     let imageDiv = $("#genre-populate");
-    imageDiv.append('hello');
 
-    // Renders movie posters to page
+    //  Renders searched movie posters to page
 
-    function renderImages(data) {
+    function renderSearch(data) {
 
         imageDiv.empty()
-        link = "www.google.com";
 
         for (let i = 0; i < data.length; i++) {
-            let posters = data[i].Poster;
-            let title = data[i].Title;
-            let description = data[i].Type;
-            var card = "<div class='col-sm-3 mb-2'>" +
-                "<div class='card'>" +
-                "<img src='" + posters + "' class='card-img-top' alt='Image'>" +
-                "<div class='card-body'>" +
-                "<h5 class='card-title'>" + title + "</h5>" +
-                "<p class='card-text'>" + description + "</p>" +
-                "<a href='" + link + "' class='btn btn-primary'>Learn More</a>" +
-                "</div>" +
-                "</div>" +
-                "</div>";
+            let poster = $('<img>').attr('src', data[i].Poster);
+            let titleType = $('<h1>').text(`${data[i].Title} / ${data[i].Type}`);
+            let moreInfo = $('<button>').text('More Info');
+            moreInfo.attr('data-id', data[i].imdbID);
+            moreInfo.addClass('more-info-button')
+            let searchedMovie = $('<div>');
+            searchedMovie.append(titleType, poster, moreInfo);
 
-            imageDiv.append(card)
+            imageDiv.append(searchedMovie)
 
         }
-    }
+    };
+
+    // Renders movie information to page
+
+    function renderMovieInfo(data) {
+
+        imageDiv.empty()
+
+        let divA = $('<div>').attr('id', 'cover');
+        let divB = $('<div>').addClass('column');
 
 
-    //    genre button click funtion sets off image renders 
+        let poster = $('<img>').attr('src', data.Poster);
+        let title = $('<h2>').text(data.Title);
+        let released = $('<h4>').text(`Released: ${data.Released}`);
+        let genre = $('<h4>').text(`Genre: ${data.Genre}`);
+        let plot = $('p>').text(`Plot: ${data.Plot}`);
+        let director = $('<h4>').text(`Director: ${data.Director}`);
+        let boxOffice = $('<h4>').text(`Box Office Sales: ${data.Boxoffice}`);
 
-    $("button").click(function () {
+        imageDiv.append(poster, title, released, genre, plot, director, boxOffice);
 
-        var buttonId = $(this).attr("id");
-        let queryUrl = `${url}?s=${buttonId}&r=json&page=1`;
+    };
 
-        const settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": queryUrl,
-            "method": "GET",
-            "headers": {
-                "X-RapidAPI-Key": apiKey,
-                "X-RapidAPI-Host": "movie-database-alternative.p.rapidapi.com"
-            }
+
+
+    // search function
+
+    $("#search-button").click(function (event) {
+        event.preventDefault();
+        let searchInput = $('#movie-input').val().trim()
+        let queryUrl = `${url}${searchInput}&apikey=${apiKey}`;
+
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        })
+            .then(function (response) {
+
+                let search = response.Search
+                renderSearch(search);
+            });
+
+        // movie data function
+
+        function movieData(event) {
+            event.preventDefault();
+            var imdbID = $(this).attr("data-id");
+            let queryUrl = `${url2}${imdbID}&apikey=${apiKey}`;
+
+            console.log(imdbID);
+
+            $.ajax({
+                url: queryUrl,
+                method: "GET"
+            })
+                .then(function (response) {
+                    console.log(response);
+
+                    renderMovieInfo(response);
+                });
+
         };
 
-        $.ajax(settings).done(function (response) {
-            let search = response.Search
-            renderImages(search);
-        })
+        $(document).on("click", ".more-info-button", movieData);
+
     });
-
-    // ty
-
 });
-
 
 //  trying to get the randomise function working, also need the buttons populated randomly on load 
 
