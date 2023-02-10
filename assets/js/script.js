@@ -1,62 +1,63 @@
 $(document).ready(function () {
 
-  //  Array of movies to be randomised when page loads 
+    // RANDOM MOVIE BUTTON GENERATOR
 
-let randomMovie =  [
-  "The Dark Knight",
-  "Die Hard",
-  "Raiders of the Lost Ark",
-  "Lethal Weapon",
-  "Terminator 2: Judgment Day",
-  "RoboCop",
-  "Aliens",
-  "The Matrix",
-  "The Matrix Reloaded",
-  "The Matrix Revolutions",
-  "The Terminator",
-  "Gladiator",
-  "The Lord of the Rings: The Fellowship of the Ring",
-  "The Lord of the Rings: The Two Towers",
-  "The Lord of the Rings: The Return of the King",
-  "The Incredible Hulk",
-  "The Avengers",
-  "The Avengers: Age of Ultron",
-  "The Avengers: Infinity War",
-  "The Avengers: Endgame"
-];
+    // array of random movies
 
-// Assigned all movie buttons to a variable 
+    let randomMovie = [
+        "The Dark Knight",
+        "Die Hard",
+        "Raiders of the Lost Ark",
+        "Lethal Weapon",
+        "Terminator 2: Judgment Day",
+        "RoboCop",
+        "Aliens",
+        "The Matrix",
+        "The Matrix Reloaded",
+        "The Matrix Revolutions",
+        "The Terminator",
+        "Gladiator",
+        "The Lord of the Rings: The Fellowship of the Ring",
+        "The Lord of the Rings: The Two Towers",
+        "The Lord of the Rings: The Return of the King",
+        "The Incredible Hulk",
+        "The Avengers",
+        "The Avengers: Age of Ultron",
+        "The Avengers: Infinity War",
+        "The Avengers: Endgame"
+    ];
 
-let genreBtn = document.querySelectorAll(".randomButton");
+    // Assigned all movie buttons to a variable 
 
-// Function to pick a random movie from the array and append to the button
+    let genreBtn = document.querySelectorAll(".randomButton");
+
+    // Function to pick a random movie from the array and append to the button
 
 
-// Array to keep track of movies that have already been appended to the buttons
-let usedMovies = [];
+    // Array to keep track of movies that have already been appended to the buttons
+    let usedMovies = [];
 
-// Function to pick a random movie from the array and append to the button
-function randomise() {
-  for (let i = 0; i < genreBtn.length; i++) {
-    let movie = randomMovie[Math.floor(Math.random() * randomMovie.length)];
+    // Function to pick a random movie from the array and append to the button
+    function randomise() {
+        for (let i = 0; i < genreBtn.length; i++) {
+            let movie = randomMovie[Math.floor(Math.random() * randomMovie.length)];
 
-    if (usedMovies.includes(movie)) {
-      // If the movie has already been used, pick another movie
-      randomise();
-    } else {
-      // If the movie has not been used, append it to the button and add it to the usedMovies array
-      genreBtn[i].innerHTML = movie;
-      usedMovies.push(movie);
+            if (usedMovies.includes(movie)) {
+                // If the movie has already been used, pick another movie
+                randomise();
+            } else {
+                // If the movie has not been used, append it to the button and add it to the usedMovies array
+                genreBtn[i].innerHTML = movie;
+                
+            }
+        }
     }
-  }
-}
 
+    // called the function to pick a random movie from the array and append to the button when page loads
+    randomise();
 
-// called the function to pick a random movie from the array and append to the button when page loads
-randomise();
-
-// added event listener to the randomise button to randomly pick a movie from the array and append to each button
-document.getElementById("random-btn").addEventListener("click", randomise);
+    // added event listener to the randomise button to randomly pick a movie from the array and append to each button
+    document.getElementById("random-btn").addEventListener("click", randomise);
 
 
   // Global Variables
@@ -212,64 +213,3 @@ document.getElementById("random-btn").addEventListener("click", randomise);
         $(document).on("click", ".more-info-button", movieData);
 
     });
-
-    // RANDOM MOVIE BUTTON GENERATOR
-
-    // array of random movies
-
-    let randomMovie = [
-        "The Dark Knight",
-        "Die Hard",
-        "Raiders of the Lost Ark",
-        "Lethal Weapon",
-        "Terminator 2: Judgment Day",
-        "RoboCop",
-        "Aliens",
-        "The Matrix",
-        "The Matrix Reloaded",
-        "The Matrix Revolutions",
-        "The Terminator",
-        "Gladiator",
-        "The Lord of the Rings: The Fellowship of the Ring",
-        "The Lord of the Rings: The Two Towers",
-        "The Lord of the Rings: The Return of the King",
-        "The Incredible Hulk",
-        "The Avengers",
-        "The Avengers: Age of Ultron",
-        "The Avengers: Infinity War",
-        "The Avengers: Endgame"
-    ];
-
-    // Assigned all movie buttons to a variable 
-
-    let genreBtn = document.querySelectorAll(".randomButton");
-
-    // Function to pick a random movie from the array and append to the button
-
-
-    // Array to keep track of movies that have already been appended to the buttons
-    let usedMovies = [];
-
-    // Function to pick a random movie from the array and append to the button
-    function randomise() {
-        for (let i = 0; i < genreBtn.length; i++) {
-            let movie = randomMovie[Math.floor(Math.random() * randomMovie.length)];
-
-            if (usedMovies.includes(movie)) {
-                // If the movie has already been used, pick another movie
-                randomise();
-            } else {
-                // If the movie has not been used, append it to the button and add it to the usedMovies array
-                genreBtn[i].innerHTML = movie;
-                usedMovies.push(movie);
-            }
-        }
-    }
-
-    // called the function to pick a random movie from the array and append to the button when page loads
-    randomise();
-
-    // added event listener to the randomise button to randomly pick a movie from the array and append to each button
-    document.getElementById("random-btn").addEventListener("click", randomise);
-
-
