@@ -35,24 +35,17 @@ $(document).ready(function () {
 
         imageDiv.empty()
 
-        let divA = $('<div>').attr('id', 'cover');
-        let divB = $('<div>').addClass('column');
-
-
         let poster = $('<img>').attr('src', data.Poster);
         let title = $('<h2>').text(data.Title);
         let released = $('<h4>').text(`Released: ${data.Released}`);
         let genre = $('<h4>').text(`Genre: ${data.Genre}`);
         let plot = $('p>').text(`Plot: ${data.Plot}`);
         let director = $('<h4>').text(`Director: ${data.Director}`);
-        let boxOffice = $('<h4>').text(`Box Office Sales: ${data.Boxoffice}`);
+        let boxOffice = $('<h4>').text(`Box Office Sales: ${data.BoxOffice}`);
 
         imageDiv.append(poster, title, released, genre, plot, director, boxOffice);
 
     };
-
-
-
     // search function
 
     $("#search-button").click(function (event) {
@@ -94,26 +87,64 @@ $(document).ready(function () {
         $(document).on("click", ".more-info-button", movieData);
 
     });
+
+    // RANDOM MOVIE BUTTON GENERATOR
+
+    // array of random movies
+
+    let randomMovie = [
+        "The Dark Knight",
+        "Die Hard",
+        "Raiders of the Lost Ark",
+        "Lethal Weapon",
+        "Terminator 2: Judgment Day",
+        "RoboCop",
+        "Aliens",
+        "The Matrix",
+        "The Matrix Reloaded",
+        "The Matrix Revolutions",
+        "The Terminator",
+        "Gladiator",
+        "The Lord of the Rings: The Fellowship of the Ring",
+        "The Lord of the Rings: The Two Towers",
+        "The Lord of the Rings: The Return of the King",
+        "The Incredible Hulk",
+        "The Avengers",
+        "The Avengers: Age of Ultron",
+        "The Avengers: Infinity War",
+        "The Avengers: Endgame"
+    ];
+
+    // Assigned all movie buttons to a variable 
+
+    let genreBtn = document.querySelectorAll(".randomButton");
+
+    // Function to pick a random movie from the array and append to the button
+
+
+    // Array to keep track of movies that have already been appended to the buttons
+    let usedMovies = [];
+
+    // Function to pick a random movie from the array and append to the button
+    function randomise() {
+        for (let i = 0; i < genreBtn.length; i++) {
+            let movie = randomMovie[Math.floor(Math.random() * randomMovie.length)];
+
+            if (usedMovies.includes(movie)) {
+                // If the movie has already been used, pick another movie
+                randomise();
+            } else {
+                // If the movie has not been used, append it to the button and add it to the usedMovies array
+                genreBtn[i].innerHTML = movie;
+                usedMovies.push(movie);
+            }
+        }
+    }
+
+    // called the function to pick a random movie from the array and append to the button when page loads
+    randomise();
+
+    // added event listener to the randomise button to randomly pick a movie from the array and append to each button
+    document.getElementById("random-btn").addEventListener("click", randomise);
+
 });
-
-//  trying to get the randomise function working, also need the buttons populated randomly on load 
-
-// let randGenres = [
-//     "Action",
-//     "Comedy",
-//     "Thriller",
-//     "Romance",
-//     "Sci-Fi",
-//     "Animation",
-//     "Documentary",
-//     "Anime",
-//     "True Crime",
-//     "Drama",
-//     "Horror",
-// ];
-
-// let genreBtn = document.getElementById("genre-btn");
-
-// function randomise() {
-//     genreBtn.innerHTML = randGenres[Math.floor(Math.random() * randGenres.length)];
-// };
