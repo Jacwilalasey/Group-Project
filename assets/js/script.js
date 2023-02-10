@@ -105,13 +105,13 @@ $(document).ready(function () {
         "The Matrix Revolutions",
         "The Terminator",
         "Gladiator",
-        "The Lord of the Rings: The Fellowship of the Ring",
-        "The Lord of the Rings: The Two Towers",
-        "The Lord of the Rings: The Return of the King",
+        "Pulp Fiction",
+        "Taxidermia ",
+        "There Will Be Blood",
         "The Incredible Hulk",
         "The Avengers",
-        "The Avengers: Age of Ultron",
-        "The Avengers: Infinity War",
+        "Trainspotting ",
+        "A Clockwork Orange",
         "The Avengers: Endgame"
     ];
 
