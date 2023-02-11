@@ -1,6 +1,15 @@
+/* global */
+
 html {
     background-color: #e9d8a6;
 }
+
+P,
+h1 {
+    text-align: center;
+}
+
+/* HEADER */
 
 .hero {
     background-color: #001219;
@@ -46,9 +55,7 @@ html {
     }
 }
 
-P {
-    text-align: center;
-}
+
 
 a,
 a:visited {
@@ -75,6 +82,8 @@ span {
     color: #edede9;
 }
 
+/* search */
+
 input {
     margin-top: 30px;
 }
@@ -97,9 +106,6 @@ input {
     border-radius: 10px;
 }
 
-.more-info-button {
-    width: 100%;
-}
 
 #search-button:hover,
 .more-info-button:hover {
@@ -107,6 +113,8 @@ input {
     width: 100%;
 
 }
+
+/* RANDOM FUNCTION */
 
 .randSelect {
     font-family: 'Righteous', cursive;
@@ -149,6 +157,9 @@ input {
     border-radius: 10px;
 }
 
+
+/* MOVIE DATA BOX */
+
 #search-data {
     background-color: #edede9;
     border: 3px solid #94d2bd;
@@ -160,53 +171,26 @@ input {
     width: 100%;
 }
 
-#cover {
-    width: 90%;
-    height: 100%;
-    border-radius: 10px;
-    text-align: center;
+.img-main {
+    max-height: 336px;
+    margin-left: 65px;
 }
 
-#movie-name {
-    color: #525252;
-}
-
-#date-made {
-    color: #525252;
-}
-
-#budget {
-    color: #525252;
-}
-
-#director {
-    color: #525252;
-}
-
-#producer {
-    color: #525252;
-}
-
-#actors {
-    display: inline-block;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin: 50px 38px 0px 38px;
-    background-color: #edede9;
-    border: 3px solid #94d2bd;
-    color: #000000;
-    width: 300px;
-    height: 300px;
-    border-radius: 10px;
-}
-
-img {
+.img-search {
     width: 100%;
     padding: 10px;
 }
 
-span {
-    width: 30vw;
+
+.current-movie-data {
+    margin-right: 60px;
+    margin-top: 20px;
+}
+
+/* SEARCHED MOVIES AT BOTTOM */
+
+.more-info-button {
+    width: 100%;
 }
 
 .inline {

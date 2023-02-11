@@ -7,7 +7,8 @@ $(document).ready(function () {
     let url = 'http://www.omdbapi.com/?s=';
     let url2 = 'http://www.omdbapi.com/?i='
     let apiKey = "1fcd68b1&";
-    let imageDiv = $("#genre-populate");
+    let imageDiv = $(".movie-image");
+    let movieInfo = $(".current-movie-data")
     let searchedMovieDrop = $("#populate-searches")
 
     //  Renders searched movie posters to page
@@ -18,7 +19,8 @@ $(document).ready(function () {
 
         for (let i = 0; i < 5; i++) {
             let poster = $('<img>').attr('src', data[i].Poster);
-            let titleType = $('<span>').text(`${data[i].Title} / ${data[i].Type}`);
+            poster.addClass('img-search');
+            // let titleType = $('<span>').text(`${data[i].Title} / ${data[i].Type}`);
             let moreInfo = $('<button>').text('More Info');
             moreInfo.attr('data-id', data[i].imdbID);
             moreInfo.addClass('more-info-button', 'button')
@@ -36,17 +38,21 @@ $(document).ready(function () {
 
     function renderMovieInfo(data) {
 
-        imageDiv.empty()
+        imageDiv.empty();
+        movieInfo.empty();
 
         let poster = $('<img>').attr('src', data.Poster);
-        let title = $('<h2>').text(data.Title);
+        poster.addClass('img-main');
+        let title = $('<h1>').text(data.Title);
         let released = $('<h4>').text(`Released: ${data.Released}`);
         let genre = $('<h4>').text(`Genre: ${data.Genre}`);
-        let plot = $('p>').text(`Plot: ${data.Plot}`);
+        let plot = $('<p>').text(`"${data.Plot}"`);
+        plot.css("font-style", "italic");
         let director = $('<h4>').text(`Director: ${data.Director}`);
         let boxOffice = $('<h4>').text(`Box Office Sales: ${data.BoxOffice}`);
 
-        imageDiv.append(poster, title, released, genre, plot, director, boxOffice);
+        imageDiv.append(poster);
+        movieInfo.append(title, plot, released, genre, director, boxOffice)
 
     };
     // search function
