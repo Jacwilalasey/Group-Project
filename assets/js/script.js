@@ -8,23 +8,26 @@ $(document).ready(function () {
     let url2 = 'http://www.omdbapi.com/?i='
     let apiKey = "1fcd68b1&";
     let imageDiv = $("#genre-populate");
+    let searchedMovieDrop = $("#populate-searches")
 
     //  Renders searched movie posters to page
 
     function renderSearch(data) {
 
-        imageDiv.empty()
+        searchedMovieDrop.empty()
 
-        for (let i = 0; i < data.length; i++) {
+        for (let i = 0; i < 5; i++) {
             let poster = $('<img>').attr('src', data[i].Poster);
-            let titleType = $('<h1>').text(`${data[i].Title} / ${data[i].Type}`);
+            let titleType = $('<span>').text(`${data[i].Title} / ${data[i].Type}`);
             let moreInfo = $('<button>').text('More Info');
             moreInfo.attr('data-id', data[i].imdbID);
-            moreInfo.addClass('more-info-button')
+            moreInfo.addClass('more-info-button', 'button')
             let searchedMovie = $('<div>');
-            searchedMovie.append(titleType, poster, moreInfo);
+            searchedMovie.addClass('inline');
 
-            imageDiv.append(searchedMovie)
+            searchedMovie.append(poster, moreInfo);
+
+            searchedMovieDrop.append(searchedMovie)
 
         }
     };
