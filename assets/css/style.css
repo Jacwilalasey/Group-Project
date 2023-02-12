@@ -1,6 +1,15 @@
+/* global */
+
 html {
     background-color: #e9d8a6;
 }
+
+P,
+h1 {
+    text-align: center;
+}
+
+/* HEADER */
 
 .hero {
     background-color: #001219;
@@ -19,47 +28,61 @@ html {
     border-right: .15em solid transparent;
     white-space: nowrap;
     margin: 0 auto;
-    animation: 
+    animation:
         typing 4s steps(50),
         blink-caret 4.4s;
 }
 
 @keyframes typing {
-    from { width: 0 }
-    to { width: 55% }
-  }
-  
+    from {
+        width: 0
+    }
+
+    to {
+        width: 55%
+    }
+}
+
 @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #edede9; }
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: #edede9;
+    }
 }
 
-P {
-    text-align: center;
-}
 
-a, a:visited {
+
+a,
+a:visited {
     text-decoration: none;
     text-align: center;
     color: #edede9;
-  }
-  
-  a:hover {
+}
+
+a:hover {
     text-decoration: none;
     color: #94d2bd;
     text-align: center;
-  }
-  
-  a:active, a:focus {
+}
+
+a:active,
+a:focus {
     text-decoration: none;
     color: #aaa;
     outline: none;
     text-align: center;
-  }
+}
 
 span {
     color: #edede9;
 }
+
+/* search */
 
 input {
     margin-top: 30px;
@@ -73,7 +96,7 @@ input {
 
 #search-section {
     padding-top: 15px;
-    
+
 }
 
 #search-button {
@@ -83,13 +106,15 @@ input {
     border-radius: 10px;
 }
 
-#search-button:hover {
+
+#search-button:hover,
+.more-info-button:hover {
     background-color: #94d2bd;
     width: 100%;
-    margin-bottom: 20px;
-    margin-top: 10px;
-    border-radius: 10px;
+
 }
+
+/* RANDOM FUNCTION */
 
 .randSelect {
     font-family: 'Righteous', cursive;
@@ -132,6 +157,9 @@ input {
     border-radius: 10px;
 }
 
+
+/* MOVIE DATA BOX */
+
 #search-data {
     background-color: #edede9;
     border: 3px solid #94d2bd;
@@ -143,42 +171,32 @@ input {
     width: 100%;
 }
 
-#cover {
-    width: 90%;
-    height: 100%;
-    border-radius: 10px;
-    text-align: center;
+.img-main {
+    max-height: 336px;
+    margin-left: 65px;
 }
 
-#movie-name {
-    color: #525252;
+.img-search {
+    width: 100%;
+    padding: 10px;
 }
 
-#date-made {
-    color: #525252;
+
+.current-movie-data {
+    margin-right: 60px;
+    margin-top: 20px;
 }
 
-#budget {
-    color: #525252;
+/* SEARCHED MOVIES AT BOTTOM */
+
+.more-info-button {
+    width: 100%;
 }
 
-#director {
-    color: #525252;
-}
-
-#producer {
-    color: #525252;
-}
-
-#actors {
+.inline {
     display: inline-block;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin: 50px 38px 0px 38px;
-    background-color: #edede9;
-    border: 3px solid #94d2bd;
-    color: #000000;
-    width: 300px;
-    height: 300px;
-    border-radius: 10px;
+    max-width: 250px;
+    padding: 5px;
+    margin: 9px;
+    align-items: center;
 }
