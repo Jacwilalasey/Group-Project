@@ -8,17 +8,28 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  <link rel="icon" href="assets/images/TMDLogo.png">
 
-  <title>TBD</title>
+  <title>The Movie Database</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Righteous&display=swap" rel="stylesheet">
   <script src="./assets/js/script.js"></script>
 </head>
 
 <body>
-  <section class="hero">
+  <section class="hero jumbotron">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title">Movie Soundtrack/Details Database</h1>
+        <h1 class="title">The Movie Database</h1>
+        <p>
+          <a class="btn btn-lg btn-clear-light soft-transition" href="https://github.com/Jacwilalasey/Group-Project"
+            role="button" target="_blank">GITHUB REPO</a>
+          <span> | </span>
+          <a class="btn btn-lg btn-clear-light soft-transition" href="https://www.omdbapi.com/" role="button"
+            target="_blank">OMDB API</a>
+        </p>
       </div>
     </div>
   </section>
@@ -39,13 +50,10 @@
           <!-- list of searchable genres and randomise genres button -->
           <div class="box table-box">
             <div class="genre-container">
-              <h3>Search by Genre</h3>
-              <button id="Horror" class="randomButton"></button>
-              <button id="Romance" class="randomButton"></button>
-              <button id="Fantasy" class="randomButton"></button>
-              <button id="Action" class="randomButton"></button>
-              <button id="Anime" class="randomButton"></button>
-              <button id="Sci-fi" class="randomButton"></button>
+              <h3 class="randSelect">Pick a Movie!</h3>
+              <button class="button randomButton"></button>
+              <button class="button randomButton"></button>
+              <button class="button randomButton"></button>
               <button id="random-btn" class="button">Randomise</button>
             </div>
           </div>
@@ -53,38 +61,25 @@
 
         <!-- query return box -->
         <div class="column">
-          <div id="search-data" class="columns box content">
-            <div class="column" id="genre-populate">
-
-              <!-- Do not delete -->
-              <!-- <div id="cover">MOVIE COVER IMAGE</div>
-            </div>
+          <div id="search-data" class="box content columns">
+            <!-- <div class="columns" id="genre-populate"> -->
+            <div class="column is-two-fifths is-justify-content-center movie-image"></div>
             <div class="column current-movie-data">
-              <h2 id="movie-name">movie name</h2>
-              <h4 id="date-made">date made</h4>
-              <h4 id="budget">budget</h4>
-              <h4 id="director">director</h4>
-              <h4 id="producer">producer</h4>
-            </div> -->
-              <!-- Do not delete -->
-
             </div>
-          </div>
-  </section>
 
-  <!-- actor return section -->
-  <section class="container-fluid" id="actors">
-    <div class="row mt-3 text-left">
-      <div class="col-md-3 col-sm-1 mb-1" id="actor-list">
-        <div class="card card-actors bg-transparent shadow">
-          <div class="card-body">
-            <h5 class="card-image" id="image"></h5>
-            <p class="card-text text-center" id='name'></p>
           </div>
+
         </div>
       </div>
     </div>
   </section>
+
+  <!-- actor return section - USE BOOTSTRAP -->
+
+  <div class="container" id="populate-searches">
+
+  </div>
+
 
 
 </body>
