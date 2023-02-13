@@ -64,6 +64,8 @@ $(document).ready(function () {
 
     $("#search-button").click(function (event) {
         event.preventDefault();
+        imageDiv.empty();
+        movieInfo.empty();
         let searchInput = $('#movie-input').val().trim()
         let queryUrl = `${url}${searchInput}&apikey=${apiKey}`;
 
@@ -80,8 +82,8 @@ $(document).ready(function () {
 
         // movie data function
 
-        function movieData(event) {
-            event.preventDefault();
+        function movieData() {
+            $("#movie-input").val("");
             var imdbID = $(this).attr("data-id");
             let queryUrl = `${url2}${imdbID}&apikey=${apiKey}`;
 
@@ -116,9 +118,9 @@ $(document).ready(function () {
         "The Matrix Revolutions",
         "The Terminator",
         "Gladiator",
-        "The Lord of the Rings: The Fellowship of the Ring",
-        "The Lord of the Rings: The Two Towers",
-        "The Lord of the Rings: The Return of the King",
+        "Pulp Fiction",
+        "Wolf of Wall Street",
+        "Hateful Eight",
         "The Incredible Hulk",
         "The Avengers",
         "The Avengers: Age of Ultron",
@@ -182,6 +184,7 @@ $(document).ready(function () {
             } else {
                 // If the movie has not been used, append it to the button and add it to the usedMovies array
                 genreBtn[i].innerHTML = movie;
+                usedMovies.push(movie);
                 
             }
         }
