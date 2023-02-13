@@ -139,9 +139,13 @@ $(document).ready(function () {
         for (let i = 0; i < genreBtn.length; i++) {
             let movie = randomMovie[Math.floor(Math.random() * randomMovie.length)];
 
+            // If the movie has already been used, pick another movie
             if (usedMovies.includes(movie)) {
-                // If the movie has already been used, pick another movie
-                randomise();
+                // exit condition for the function so that it will not continue to call itself infinitely
+                if(usedMovies.length < randomMovie.length){
+                    randomise();
+                }
+               
             } else {
                 // If the movie has not been used, append it to the button and add it to the usedMovies array
                 genreBtn[i].innerHTML = movie;
