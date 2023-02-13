@@ -30,8 +30,12 @@ $(document).ready(function () {
 
             searchedMovie.append(poster, moreInfo);
 
-            searchedMovieDrop.append(searchedMovie)
-
+            searchedMovieDrop.append(searchedMovie);
+            
+            searchedMovie.click(function(event){
+                event.preventDefault();
+                movieData.call(moreInfo[0], event);
+            });
         }
     };
 
@@ -72,6 +76,7 @@ $(document).ready(function () {
                 let search = response.Search
                 renderSearch(search);
             });
+    });
 
         // movie data function
 
@@ -94,7 +99,6 @@ $(document).ready(function () {
 
         };
         $(document).on("click", ".more-info-button", movieData);
-    });
 
     // RANDOM MOVIE BUTTON GENERATOR
 
@@ -150,8 +154,8 @@ $(document).ready(function () {
             `);
         });
     }
-    const defaultMovieTitle = "The Incredible Hulk";
-    displayMovieInfo(defaultMovieTitle);
+    // const defaultMovieTitle = "The Incredible Hulk";
+    // displayMovieInfo(defaultMovieTitle);
     $('.randomButton').click(function(){
         const movieTitle = $(this).html();
         displayMovieInfo(movieTitle);
