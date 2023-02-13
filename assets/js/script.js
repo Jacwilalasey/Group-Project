@@ -137,8 +137,26 @@ $(document).ready(function () {
             method: 'GET'
         }).then(function(data){
             console.log(data);
-        })
+            $('.movie-image').html(`<img src="${data.Poster}" alt="${movieTitle} poster">`);
+            $('.current-movie-data').html(`
+            <h2 style='text-align: left'>${data.Title}</h2>
+            <p style='text-align: left'><strong>Plot: </strong><i>"${data.Plot}"</i></p>
+            <p style='text-align: left'><strong>Director: </strong>${data.Director}</p>
+            <p style='text-align: left'><strong>Release Year: </strong>${data.Year}</p>
+            <p style='text-align: left'><strong>Language: </strong>${data.Language}</p>
+            <p style='text-align: left'><strong>Awards: </strong>${data.Awards}</p>
+            <p style='text-align: left'><strong>Runtime: </strong>${data.Runtime}</p>
+            <p style='text-align: left'><strong>Genre: </strong>${data.Genre}</p>
+            <p style='text-align: left'><strong>Actors: </strong>${data.Actors}</p>
+            <p style='text-align: left'><strong>IMBd Rating: </strong>${data.imdbRating}</p>
+            `);
+        });
     }
+    
+    $('.randomButton').click(function(){
+        const movieTitle = $(this).html();
+        displayMovieInfo(movieTitle);
+    });
 
     // Array to keep track of movies that have already been appended to the buttons
     let usedMovies = [];
