@@ -5,7 +5,8 @@ $(document).ready(function () {
     // Global Variables
 
     let url = 'http://www.omdbapi.com/?s=';
-    let url2 = 'http://www.omdbapi.com/?i='
+    let url2 = 'http://www.omdbapi.com/?i=';
+    let url3 = 'http://www.omdbapi.com/?t=';
     let apiKey = "1fcd68b1&";
     let imageDiv = $(".movie-image");
     let movieInfo = $(".current-movie-data")
@@ -92,10 +93,8 @@ $(document).ready(function () {
                 });
 
         };
-
-        $(document).on("click", ".more-info-button", movieData);
-
     });
+    $(document).on("click", ".more-info-button", movieData);
 
     // RANDOM MOVIE BUTTON GENERATOR
 
@@ -128,19 +127,54 @@ $(document).ready(function () {
     let genreBtn = document.querySelectorAll(".randomButton");
 
     // Function to pick a random movie from the array and append to the button
-
+    function displayMovieInfo(movieTitle){
+        url = `${url3}${movieTitle}&apikey=${apiKey}`;
+        $.ajax({
+            url: url,
+            method: 'GET'
+        }).then(function(data){
+            console.log(data);
+            $('.movie-image').html(`<img src="${data.Poster}" alt="${movieTitle} poster">`);
+            $('.current-movie-data').html(`
+            <h2 style='text-align: left'>${data.Title}</h2>
+            <p style='text-align: left'><strong>Plot: </strong><i>"${data.Plot}"</i></p>
+            <p style='text-align: left'><strong>Director: </strong>${data.Director}</p>
+            <p style='text-align: left'><strong>Release Year: </strong>${data.Year}</p>
+            <p style='text-align: left'><strong>Language: </strong>${data.Language}</p>
+            <p style='text-align: left'><strong>Awards: </strong>${data.Awards}</p>
+            <p style='text-align: left'><strong>Runtime: </strong>${data.Runtime}</p>
+            <p style='text-align: left'><strong>Genre: </strong>${data.Genre}</p>
+            <p style='text-align: left'><strong>Actors: </strong>${data.Actors}</p>
+            <p style='text-align: left'><strong>IMBd Rating: </strong>${data.imdbRating}</p>
+            `);
+        });
+    }
+    const defaultMovieTitle = "The Incredible Hulk";
+    displayMovieInfo(defaultMovieTitle);
+    $('.randomButton').click(function(){
+        const movieTitle = $(this).html();
+        displayMovieInfo(movieTitle);
+    });
 
     // Array to keep track of movies that have already been appended to the buttons
     let usedMovies = [];
 
     // Function to pick a random movie from the array and append to the button
     function randomise() {
+        // if all movies have been used, reset the usedMovies array back to an empty array
+        if(usedMovies.length === randomMovie.length){
+            usedMovies=[];
+        }
         for (let i = 0; i < genreBtn.length; i++) {
             let movie = randomMovie[Math.floor(Math.random() * randomMovie.length)];
 
+            // If the movie has already been used, pick another movie
             if (usedMovies.includes(movie)) {
-                // If the movie has already been used, pick another movie
-                randomise();
+                // exit condition for the function so that it will not continue to call itself infinitely
+                if(usedMovies.length < randomMovie.length){
+                    randomise();
+                }
+               
             } else {
                 // If the movie has not been used, append it to the button and add it to the usedMovies array
                 genreBtn[i].innerHTML = movie;
