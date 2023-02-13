@@ -93,10 +93,8 @@ $(document).ready(function () {
                 });
 
         };
-
-        $(document).on("click", ".more-info-button", movieData);
-
     });
+    $(document).on("click", ".more-info-button", movieData);
 
     // RANDOM MOVIE BUTTON GENERATOR
 
