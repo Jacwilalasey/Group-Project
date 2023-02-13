@@ -111,7 +111,10 @@ input {
 .more-info-button:hover {
     background-color: #94d2bd;
     width: 100%;
+}
 
+.inline {
+    cursor: pointer;
 }
 
 /* RANDOM FUNCTION */
