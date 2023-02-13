@@ -136,6 +136,10 @@ $(document).ready(function () {
 
     // Function to pick a random movie from the array and append to the button
     function randomise() {
+        // if all movies have been used, reset the usedMovies array back to an empty array
+        if(usedMovies.length === randomMovie.length){
+            usedMovies=[];
+        }
         for (let i = 0; i < genreBtn.length; i++) {
             let movie = randomMovie[Math.floor(Math.random() * randomMovie.length)];
 
