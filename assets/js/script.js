@@ -5,7 +5,8 @@ $(document).ready(function () {
     // Global Variables
 
     let url = 'http://www.omdbapi.com/?s=';
-    let url2 = 'http://www.omdbapi.com/?i='
+    let url2 = 'http://www.omdbapi.com/?i=';
+    let url3 = 'http://www.omdbapi.com/?t=';
     let apiKey = "1fcd68b1&";
     let imageDiv = $(".movie-image");
     let movieInfo = $(".current-movie-data")
@@ -129,7 +130,15 @@ $(document).ready(function () {
     let genreBtn = document.querySelectorAll(".randomButton");
 
     // Function to pick a random movie from the array and append to the button
-
+    function displayMovieInfo(movieTitle){
+        url = `${url3}${movieTitle}&apikey=${apiKey}`;
+        $.ajax({
+            url: url,
+            method: 'GET'
+        }).then(function(data){
+            console.log(data);
+        })
+    }
 
     // Array to keep track of movies that have already been appended to the buttons
     let usedMovies = [];
