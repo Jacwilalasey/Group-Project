@@ -152,7 +152,8 @@ $(document).ready(function () {
             `);
         });
     }
-    
+    const defaultMovieTitle = "The Incredible Hulk";
+    displayMovieInfo(defaultMovieTitle);
     $('.randomButton').click(function(){
         const movieTitle = $(this).html();
         displayMovieInfo(movieTitle);
