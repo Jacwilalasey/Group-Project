@@ -100,7 +100,6 @@ $(document).ready(function () {
     // RANDOM MOVIE BUTTON GENERATOR
 
     // array of random movies
-
     let randomMovie = [
         "The Dark Knight",
         "Die Hard",
@@ -114,13 +113,13 @@ $(document).ready(function () {
         "The Matrix Revolutions",
         "The Terminator",
         "Gladiator",
-        "Pulp Fiction",
-        "Taxidermia ",
-        "There Will Be Blood",
+        "The Lord of the Rings: The Fellowship of the Ring",
+        "The Lord of the Rings: The Two Towers",
+        "The Lord of the Rings: The Return of the King",
         "The Incredible Hulk",
         "The Avengers",
-        "Trainspotting ",
-        "A Clockwork Orange",
+        "The Avengers: Age of Ultron",
+        "The Avengers: Infinity War",
         "The Avengers: Endgame"
     ];
 
@@ -145,7 +144,7 @@ $(document).ready(function () {
             } else {
                 // If the movie has not been used, append it to the button and add it to the usedMovies array
                 genreBtn[i].innerHTML = movie;
-                usedMovies.push(movie);
+                
             }
         }
     }
