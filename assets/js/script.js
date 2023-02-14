@@ -65,7 +65,9 @@ $(document).ready(function () {
 
     // event listner search function - takes search input and uses renderSearch function to page
 
-    $("#search-button").click(function (event) {
+
+
+    function search(event) {
         event.preventDefault();
         let searchInput = $('#movie-input').val().trim()
         let queryUrl = `${url}${searchInput}&apikey=${apiKey}`;
@@ -79,7 +81,7 @@ $(document).ready(function () {
                 let search = response.Search
                 renderSearch(search);
             });
-    });
+    };
 
     // movie data function which takes imdb id / get movie info from API then renders this to the page
 
@@ -105,6 +107,8 @@ $(document).ready(function () {
     // event listener that sets off the render of movie info to page
 
     $(document).on("click", ".info-search", movieData);
+
+    $(document).on("click", "#search-button", search);
 
     // RANDOM MOVIE BUTTON GENERATOR
 
@@ -161,10 +165,13 @@ $(document).ready(function () {
     }
     // const defaultMovieTitle = "The Incredible Hulk";
     // displayMovieInfo(defaultMovieTitle);
-    $('.randomButton').click(function () {
+
+    function randomButtonClick() {
         const movieTitle = $(this).html();
         displayMovieInfo(movieTitle);
-    });
+    };
+
+    $(document).on("click", ".randomButton", randomButtonClick);
 
     // Array to keep track of movies that have already been appended to the buttons
     let usedMovies = [];
