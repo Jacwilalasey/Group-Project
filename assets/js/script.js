@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-    console.log('hello world')
-
     // Global Variables
 
     let url = 'http://www.omdbapi.com/?s=';
@@ -69,6 +67,8 @@ $(document).ready(function () {
 
     function search(event) {
         event.preventDefault();
+        imageDiv.empty();
+        movieInfo.empty();
         let searchInput = $('#movie-input').val().trim()
         let queryUrl = `${url}${searchInput}&apikey=${apiKey}`;
 
@@ -85,6 +85,7 @@ $(document).ready(function () {
 
     // movie data function which takes imdb id / get movie info from API then renders this to the page
 
+<<<<<<< HEAD
     function movieData(event) {
         event.preventDefault();
         var imdbID = $(this).attr("data-id");
@@ -101,6 +102,20 @@ $(document).ready(function () {
 
                 renderMovieInfo(response);
             });
+=======
+        function movieData() {
+            $("#movie-input").val("");
+            var imdbID = $(this).attr("data-id");
+            let queryUrl = `${url2}${imdbID}&apikey=${apiKey}`;
+
+            $.ajax({
+                url: queryUrl,
+                method: "GET"
+            })
+                .then(function (response) {
+                    renderMovieInfo(response);
+                });
+>>>>>>> a9d19cf91b14a178d3671cf7f5128082a9dd5e4b
 
     };
 
@@ -126,21 +141,22 @@ $(document).ready(function () {
         "The Matrix Revolutions",
         "The Terminator",
         "Gladiator",
-        "The Lord of the Rings: The Fellowship of the Ring",
-        "The Lord of the Rings: The Two Towers",
-        "The Lord of the Rings: The Return of the King",
+        "Pulp Fiction",
+        "Wolf of Wall Street",
+        "Hateful Eight",
         "The Incredible Hulk",
         "The Avengers",
-        "The Avengers: Age of Ultron",
+        "Iron Man",
         "The Avengers: Infinity War",
         "The Avengers: Endgame"
     ];
 
     // Assigned all movie buttons to a variable 
 
-    let genreBtn = document.querySelectorAll(".randomButton");
+    let genreBtn = $(".randomButton");
 
     // Function to pick a random movie from the array and append to the button
+<<<<<<< HEAD
     function displayMovieInfo(movieTitle) {
         url = `${url3}${movieTitle}&apikey=${apiKey}`;
         $.ajax({
@@ -148,6 +164,14 @@ $(document).ready(function () {
             method: 'GET'
         }).then(function (data) {
             console.log(data);
+=======
+    function displayMovieInfo(movieTitle){
+        let url = `${url3}${movieTitle}&apikey=${apiKey}`;
+        $.ajax({
+            url: url,
+            method: 'GET'
+        }).then(function(data){
+>>>>>>> a9d19cf91b14a178d3671cf7f5128082a9dd5e4b
             $('.movie-image').html(`<img src="${data.Poster}" alt="${movieTitle} poster">`);
             $('.current-movie-data').html(`
             <h2 style='text-align: left'>${data.Title}</h2>
@@ -161,12 +185,20 @@ $(document).ready(function () {
             <p style='text-align: left'><strong>Actors: </strong>${data.Actors}</p>
             <p style='text-align: left'><strong>IMBd Rating: </strong>${data.imdbRating}</p>
             `);
+
+           
+        
         });
     }
     // const defaultMovieTitle = "The Incredible Hulk";
     // displayMovieInfo(defaultMovieTitle);
+<<<<<<< HEAD
 
     function randomButtonClick() {
+=======
+    $('.randomButton').click(function(){
+        $("#movie-input").val("");
+>>>>>>> a9d19cf91b14a178d3671cf7f5128082a9dd5e4b
         const movieTitle = $(this).html();
         displayMovieInfo(movieTitle);
     };
@@ -195,7 +227,12 @@ $(document).ready(function () {
             } else {
                 // If the movie has not been used, append it to the button and add it to the usedMovies array
                 genreBtn[i].innerHTML = movie;
+<<<<<<< HEAD
 
+=======
+                usedMovies.push(movie);
+                
+>>>>>>> a9d19cf91b14a178d3671cf7f5128082a9dd5e4b
             }
         }
     }
