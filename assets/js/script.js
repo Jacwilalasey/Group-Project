@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-    console.log('hello world')
-
     // Global Variables
 
     let url = 'http://www.omdbapi.com/?s=';
@@ -87,15 +85,11 @@ $(document).ready(function () {
             var imdbID = $(this).attr("data-id");
             let queryUrl = `${url2}${imdbID}&apikey=${apiKey}`;
 
-            console.log(imdbID);
-
             $.ajax({
                 url: queryUrl,
                 method: "GET"
             })
                 .then(function (response) {
-                    console.log(response);
-
                     renderMovieInfo(response);
                 });
 
@@ -123,23 +117,22 @@ $(document).ready(function () {
         "Hateful Eight",
         "The Incredible Hulk",
         "The Avengers",
-        "The Avengers: Age of Ultron",
+        "Iron Man",
         "The Avengers: Infinity War",
         "The Avengers: Endgame"
     ];
 
     // Assigned all movie buttons to a variable 
 
-    let genreBtn = document.querySelectorAll(".randomButton");
+    let genreBtn = $(".randomButton");
 
     // Function to pick a random movie from the array and append to the button
     function displayMovieInfo(movieTitle){
-        url = `${url3}${movieTitle}&apikey=${apiKey}`;
+        let url = `${url3}${movieTitle}&apikey=${apiKey}`;
         $.ajax({
             url: url,
             method: 'GET'
         }).then(function(data){
-            console.log(data);
             $('.movie-image').html(`<img src="${data.Poster}" alt="${movieTitle} poster">`);
             $('.current-movie-data').html(`
             <h2 style='text-align: left'>${data.Title}</h2>
@@ -153,11 +146,15 @@ $(document).ready(function () {
             <p style='text-align: left'><strong>Actors: </strong>${data.Actors}</p>
             <p style='text-align: left'><strong>IMBd Rating: </strong>${data.imdbRating}</p>
             `);
+
+           
+        
         });
     }
     // const defaultMovieTitle = "The Incredible Hulk";
     // displayMovieInfo(defaultMovieTitle);
     $('.randomButton').click(function(){
+        $("#movie-input").val("");
         const movieTitle = $(this).html();
         displayMovieInfo(movieTitle);
     });
