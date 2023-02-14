@@ -15,25 +15,14 @@ $(document).ready(function () {
     function renderSearch(data) {
 
         searchedMovieDrop.empty()
-
         for (let i = 0; i < 5; i++) {
             let poster = $('<img>').attr('src', data[i].Poster);
             poster.addClass('img-search');
-            // let titleType = $('<span>').text(`${data[i].Title} / ${data[i].Type}`);
-            let moreInfo = $('<button>').text('More Info');
-            moreInfo.attr('data-id', data[i].imdbID);
-            moreInfo.addClass('more-info-button', 'button')
+            poster.attr('data-id', data[i].imdbID)
             let searchedMovie = $('<div>');
             searchedMovie.addClass('inline');
-
-            searchedMovie.append(poster, moreInfo);
-
+            searchedMovie.append(poster);
             searchedMovieDrop.append(searchedMovie);
-            
-            searchedMovie.click(function(event){
-                event.preventDefault();
-                movieData.call(moreInfo[0], event);
-            });
         }
     };
 
@@ -78,23 +67,24 @@ $(document).ready(function () {
             });
     });
 
-        // movie data function
+    // movie data function
 
-        function movieData() {
-            $("#movie-input").val("");
-            var imdbID = $(this).attr("data-id");
-            let queryUrl = `${url2}${imdbID}&apikey=${apiKey}`;
+    function movieData() {
+        $("#movie-input").val("");
+        var imdbID = $(this).attr("data-id");
+        let queryUrl = `${url2}${imdbID}&apikey=${apiKey}`;
 
-            $.ajax({
-                url: queryUrl,
-                method: "GET"
-            })
-                .then(function (response) {
-                    renderMovieInfo(response);
-                });
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        })
+            .then(function (response) {
+                renderMovieInfo(response);
+            });
 
-        };
-        $(document).on("click", ".more-info-button", movieData);
+    };
+
+    $(document).on("click", ".img-search", movieData);
 
     // RANDOM MOVIE BUTTON GENERATOR
 
@@ -118,7 +108,6 @@ $(document).ready(function () {
         "The Incredible Hulk",
         "The Avengers",
         "Iron Man",
-        "The Avengers: Infinity War",
         "The Avengers: Endgame"
     ];
 
@@ -126,38 +115,58 @@ $(document).ready(function () {
 
     let genreBtn = $(".randomButton");
 
-    // Function to pick a random movie from the array and append to the button
-    function displayMovieInfo(movieTitle){
+    // Function that renders movie info from random button to page 
+
+    function displayMovieInfo(movieTitle) {
         let url = `${url3}${movieTitle}&apikey=${apiKey}`;
         $.ajax({
             url: url,
             method: 'GET'
-        }).then(function(data){
-            $('.movie-image').html(`<img src="${data.Poster}" alt="${movieTitle} poster">`);
-            $('.current-movie-data').html(`
-            <h2 style='text-align: left'>${data.Title}</h2>
-            <p style='text-align: left'><strong>Plot: </strong><i>"${data.Plot}"</i></p>
-            <p style='text-align: left'><strong>Director: </strong>${data.Director}</p>
-            <p style='text-align: left'><strong>Release Year: </strong>${data.Year}</p>
-            <p style='text-align: left'><strong>Language: </strong>${data.Language}</p>
-            <p style='text-align: left'><strong>Awards: </strong>${data.Awards}</p>
-            <p style='text-align: left'><strong>Runtime: </strong>${data.Runtime}</p>
-            <p style='text-align: left'><strong>Genre: </strong>${data.Genre}</p>
-            <p style='text-align: left'><strong>Actors: </strong>${data.Actors}</p>
-            <p style='text-align: left'><strong>IMBd Rating: </strong>${data.imdbRating}</p>
-            `);
+        }).then(function (data) {
 
-           
-        
+            imageDiv.empty();
+            movieInfo.empty();
+
+            let poster = $('<img>').attr('src', data.Poster);
+            poster.addClass('img-main');
+            let title = $('<h1>').text(data.Title);
+            let released = $('<h4>').text(`Released: ${data.Released}`);
+            let genre = $('<h4>').text(`Genre: ${data.Genre}`);
+            let plot = $('<p>').text(`"${data.Plot}"`);
+            plot.css("font-style", "italic");
+            let director = $('<h4>').text(`Director: ${data.Director}`);
+            let boxOffice = $('<h4>').text(`Box Office Sales: ${data.BoxOffice}`);
+
+            imageDiv.append(poster);
+            movieInfo.append(title, plot, released, genre, director, boxOffice)
+
+            // $('.movie-image').html(`<img src="${data.Poster}" alt="${movieTitle} poster">`);
+            // $('.current-movie-data').html(`
+            // <h2 style='text-align: left'>${data.Title}</h2>
+            // <p style='text-align: left'><strong>Plot: </strong><i>"${data.Plot}"</i></p>
+            // <p style='text-align: left'><strong>Director: </strong>${data.Director}</p>
+            // <p style='text-align: left'><strong>Release Year: </strong>${data.Year}</p>
+            // <p style='text-align: left'><strong>Language: </strong>${data.Language}</p>
+            // <p style='text-align: left'><strong>Awards: </strong>${data.Awards}</p>
+            // <p style='text-align: left'><strong>Runtime: </strong>${data.Runtime}</p>
+            // <p style='text-align: left'><strong>Genre: </strong>${data.Genre}</p>
+            // <p style='text-align: left'><strong>Actors: </strong>${data.Actors}</p>
+            // <p style='text-align: left'><strong>IMBd Rating: </strong>${data.imdbRating}</p>
+            // `);
+
         });
     }
-    // const defaultMovieTitle = "The Incredible Hulk";
-    // displayMovieInfo(defaultMovieTitle);
-    $('.randomButton').click(function(){
+
+    // Event listener that runs the displayMovieInfo function on random button click
+
+    $('.randomButton').click(function () {
         $("#movie-input").val("");
         const movieTitle = $(this).html();
         displayMovieInfo(movieTitle);
     });
+
+
+    // Function to pick a random movie from the array and append to the button
 
     // Array to keep track of movies that have already been appended to the buttons
     let usedMovies = [];
@@ -165,8 +174,8 @@ $(document).ready(function () {
     // Function to pick a random movie from the array and append to the button
     function randomise() {
         // if all movies have been used, reset the usedMovies array back to an empty array
-        if(usedMovies.length === randomMovie.length){
-            usedMovies=[];
+        if (usedMovies.length === randomMovie.length) {
+            usedMovies = [];
         }
         for (let i = 0; i < genreBtn.length; i++) {
             let movie = randomMovie[Math.floor(Math.random() * randomMovie.length)];
@@ -174,15 +183,15 @@ $(document).ready(function () {
             // If the movie has already been used, pick another movie
             if (usedMovies.includes(movie)) {
                 // exit condition for the function so that it will not continue to call itself infinitely
-                if(usedMovies.length < randomMovie.length){
+                if (usedMovies.length < randomMovie.length) {
                     randomise();
                 }
-               
+
             } else {
                 // If the movie has not been used, append it to the button and add it to the usedMovies array
                 genreBtn[i].innerHTML = movie;
                 usedMovies.push(movie);
-                
+
             }
         }
     }
