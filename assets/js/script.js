@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-    console.log('hello world')
-
     // Global Variables
 
     let url = 'http://www.omdbapi.com/?s=';
@@ -76,7 +74,6 @@ $(document).ready(function () {
             .then(function (response) {
 
                 let search = response.Search
-                console.log(search)
                 renderSearch(search);
             });
     });
@@ -88,15 +85,11 @@ $(document).ready(function () {
             var imdbID = $(this).attr("data-id");
             let queryUrl = `${url2}${imdbID}&apikey=${apiKey}`;
 
-            console.log(imdbID);
-
             $.ajax({
                 url: queryUrl,
                 method: "GET"
             })
                 .then(function (response) {
-                    console.log(response);
-
                     renderMovieInfo(response);
                 });
 
@@ -140,7 +133,6 @@ $(document).ready(function () {
             url: url,
             method: 'GET'
         }).then(function(data){
-            console.log(data);
             $('.movie-image').html(`<img src="${data.Poster}" alt="${movieTitle} poster">`);
             $('.current-movie-data').html(`
             <h2 style='text-align: left'>${data.Title}</h2>
