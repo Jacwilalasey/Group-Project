@@ -76,6 +76,7 @@ $(document).ready(function () {
             .then(function (response) {
 
                 let search = response.Search
+                console.log(search)
                 renderSearch(search);
             });
     });
@@ -123,18 +124,18 @@ $(document).ready(function () {
         "Hateful Eight",
         "The Incredible Hulk",
         "The Avengers",
-        "The Avengers: Age of Ultron",
+        "Iron Man",
         "The Avengers: Infinity War",
         "The Avengers: Endgame"
     ];
 
     // Assigned all movie buttons to a variable 
 
-    let genreBtn = document.querySelectorAll(".randomButton");
+    let genreBtn = $(".randomButton");
 
     // Function to pick a random movie from the array and append to the button
     function displayMovieInfo(movieTitle){
-        url = `${url3}${movieTitle}&apikey=${apiKey}`;
+        let url = `${url3}${movieTitle}&apikey=${apiKey}`;
         $.ajax({
             url: url,
             method: 'GET'
@@ -153,11 +154,15 @@ $(document).ready(function () {
             <p style='text-align: left'><strong>Actors: </strong>${data.Actors}</p>
             <p style='text-align: left'><strong>IMBd Rating: </strong>${data.imdbRating}</p>
             `);
+
+           
+        
         });
     }
     // const defaultMovieTitle = "The Incredible Hulk";
     // displayMovieInfo(defaultMovieTitle);
     $('.randomButton').click(function(){
+        $("#movie-input").val("");
         const movieTitle = $(this).html();
         displayMovieInfo(movieTitle);
     });
