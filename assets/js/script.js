@@ -12,7 +12,7 @@ $(document).ready(function () {
     let movieInfo = $(".current-movie-data")
     let searchedMovieDrop = $("#populate-searches")
 
-    //  Renders searched movie posters to page
+    //  Renders searched movie posters to page and makes them clickable to populate info to page
 
     function renderSearch(data) {
 
@@ -21,21 +21,22 @@ $(document).ready(function () {
         for (let i = 0; i < 5; i++) {
             let poster = $('<img>').attr('src', data[i].Poster);
             poster.addClass('img-search');
-            // let titleType = $('<span>').text(`${data[i].Title} / ${data[i].Type}`);
-            let moreInfo = $('<button>').text('More Info');
-            moreInfo.attr('data-id', data[i].imdbID);
-            moreInfo.addClass('more-info-button', 'button')
+            poster.addClass('info-search')
+            poster.attr('data-id', data[i].imdbID);
+            // let moreInfo = $('<button>').text('More Info');
+            // moreInfo.attr('data-id', data[i].imdbID);
+            // moreInfo.addClass('more-info-button', 'button')
             let searchedMovie = $('<div>');
             searchedMovie.addClass('inline');
 
-            searchedMovie.append(poster, moreInfo);
+            searchedMovie.append(poster);
 
             searchedMovieDrop.append(searchedMovie);
-            
-            searchedMovie.click(function(event){
-                event.preventDefault();
-                movieData.call(moreInfo[0], event);
-            });
+
+            // searchedMovie.click(function (event) {
+            //     event.preventDefault();
+            //     movieData.call(moreInfo[0], event);
+            // });
         }
     };
 
@@ -60,7 +61,9 @@ $(document).ready(function () {
         movieInfo.append(title, plot, released, genre, director, boxOffice)
 
     };
-    // search function
+
+
+    // event listner search function - takes search input and uses renderSearch function to page
 
     $("#search-button").click(function (event) {
         event.preventDefault();
@@ -78,27 +81,30 @@ $(document).ready(function () {
             });
     });
 
-        // movie data function
+    // movie data function which takes imdb id / get movie info from API then renders this to the page
 
-        function movieData(event) {
-            event.preventDefault();
-            var imdbID = $(this).attr("data-id");
-            let queryUrl = `${url2}${imdbID}&apikey=${apiKey}`;
+    function movieData(event) {
+        event.preventDefault();
+        var imdbID = $(this).attr("data-id");
+        let queryUrl = `${url2}${imdbID}&apikey=${apiKey}`;
 
-            console.log(imdbID);
+        console.log(imdbID);
 
-            $.ajax({
-                url: queryUrl,
-                method: "GET"
-            })
-                .then(function (response) {
-                    console.log(response);
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        })
+            .then(function (response) {
+                console.log(response);
 
-                    renderMovieInfo(response);
-                });
+                renderMovieInfo(response);
+            });
 
-        };
-        $(document).on("click", ".more-info-button", movieData);
+    };
+
+    // event listener that sets off the render of movie info to page
+
+    $(document).on("click", ".info-search", movieData);
 
     // RANDOM MOVIE BUTTON GENERATOR
 
@@ -131,12 +137,12 @@ $(document).ready(function () {
     let genreBtn = document.querySelectorAll(".randomButton");
 
     // Function to pick a random movie from the array and append to the button
-    function displayMovieInfo(movieTitle){
+    function displayMovieInfo(movieTitle) {
         url = `${url3}${movieTitle}&apikey=${apiKey}`;
         $.ajax({
             url: url,
             method: 'GET'
-        }).then(function(data){
+        }).then(function (data) {
             console.log(data);
             $('.movie-image').html(`<img src="${data.Poster}" alt="${movieTitle} poster">`);
             $('.current-movie-data').html(`
@@ -155,7 +161,7 @@ $(document).ready(function () {
     }
     // const defaultMovieTitle = "The Incredible Hulk";
     // displayMovieInfo(defaultMovieTitle);
-    $('.randomButton').click(function(){
+    $('.randomButton').click(function () {
         const movieTitle = $(this).html();
         displayMovieInfo(movieTitle);
     });
@@ -166,8 +172,8 @@ $(document).ready(function () {
     // Function to pick a random movie from the array and append to the button
     function randomise() {
         // if all movies have been used, reset the usedMovies array back to an empty array
-        if(usedMovies.length === randomMovie.length){
-            usedMovies=[];
+        if (usedMovies.length === randomMovie.length) {
+            usedMovies = [];
         }
         for (let i = 0; i < genreBtn.length; i++) {
             let movie = randomMovie[Math.floor(Math.random() * randomMovie.length)];
@@ -175,14 +181,14 @@ $(document).ready(function () {
             // If the movie has already been used, pick another movie
             if (usedMovies.includes(movie)) {
                 // exit condition for the function so that it will not continue to call itself infinitely
-                if(usedMovies.length < randomMovie.length){
+                if (usedMovies.length < randomMovie.length) {
                     randomise();
                 }
-               
+
             } else {
                 // If the movie has not been used, append it to the button and add it to the usedMovies array
                 genreBtn[i].innerHTML = movie;
-                
+
             }
         }
     }
