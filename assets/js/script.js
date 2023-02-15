@@ -44,25 +44,46 @@ $(document).ready(function () {
         plot.css("font-style", "italic");
         let director = $('<h4>').text(`Director: ${data.Director}`);
         let boxOffice = $('<h4>').text(`Box Office Sales: ${data.BoxOffice}`);
+        // $("#movie-list-button").on("click", renderList);
 
         imageDiv.append(poster);
         movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton);
-        $("#movie-list-button").on("click", renderList);
+
     };
 
+    // renders movies from local storage to array used to populate local storage if local storage is not null
+
+    let list = JSON.parse(localStorage.getItem("movieTitle"))
     titleArray = []
-    function renderList () {
+
+    function localPush() {
+        if (list !== null) {
+
+            list.forEach((item) => {
+                titleArray.push(item);
+            });
+        } else {
+            return;
+        }
+    };
+
+    localPush();
+
+    // Saving movies to local storage and my list function / event listener to call this //
+
+    function renderList() {
         let title = $("#movie-list-button").attr("data-title");
         if (titleArray.includes(title)) {
             return;
-        }else {
-        titleArray.push(title);
+        } else {
+            titleArray.unshift(title);
         }
 
         localStorage.setItem("movieTitle", JSON.stringify(titleArray));
         $("#movie-list-button").html("Added to Saved Movies");
     }
 
+    $(document).on("click", "#movie-list-button", renderList);
 
 
     // search function
@@ -159,23 +180,6 @@ $(document).ready(function () {
 
             imageDiv.append(poster);
             movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton);
-
-            $("#movie-list-button").on("click", renderList);
-
-
-            // $('.movie-image').html(`<img src="${data.Poster}" alt="${movieTitle} poster">`);
-            // $('.current-movie-data').html(`
-            // <h2 style='text-align: left'>${data.Title}</h2>
-            // <p style='text-align: left'><strong>Plot: </strong><i>"${data.Plot}"</i></p>
-            // <p style='text-align: left'><strong>Director: </strong>${data.Director}</p>
-            // <p style='text-align: left'><strong>Release Year: </strong>${data.Year}</p>
-            // <p style='text-align: left'><strong>Language: </strong>${data.Language}</p>
-            // <p style='text-align: left'><strong>Awards: </strong>${data.Awards}</p>
-            // <p style='text-align: left'><strong>Runtime: </strong>${data.Runtime}</p>
-            // <p style='text-align: left'><strong>Genre: </strong>${data.Genre}</p>
-            // <p style='text-align: left'><strong>Actors: </strong>${data.Actors}</p>
-            // <p style='text-align: left'><strong>IMBd Rating: </strong>${data.imdbRating}</p>
-            // `);
 
         });
     }
