@@ -35,6 +35,8 @@ $(document).ready(function () {
 
         let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to Saved Movies");
         movieListButton.attr("data-title", data.Title);
+        let movieButtonResponse = $('<div>');
+        movieButtonResponse.addClass('response-text');
         let poster = $('<img>').attr('src', data.Poster);
         poster.addClass('img-main');
         let title = $('<h1>').text(data.Title);
@@ -44,10 +46,9 @@ $(document).ready(function () {
         plot.css("font-style", "italic");
         let director = $('<h4>').text(`Director: ${data.Director}`);
         let boxOffice = $('<h4>').text(`Box Office Sales: ${data.BoxOffice}`);
-        // $("#movie-list-button").on("click", renderList);
 
         imageDiv.append(poster);
-        movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton);
+        movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton, movieButtonResponse);
 
     };
 
@@ -74,17 +75,33 @@ $(document).ready(function () {
     function renderList() {
         let title = $("#movie-list-button").attr("data-title");
         if (titleArray.includes(title)) {
+            alreadyAddedToLocal();
             return;
         } else {
             titleArray.unshift(title);
+            setTimeout(addedToLocal(), 4000);
         }
 
         localStorage.setItem("movieTitle", JSON.stringify(titleArray));
-        $("#movie-list-button").html("Added to Saved Movies");
     }
 
     $(document).on("click", "#movie-list-button", renderList);
 
+    function addedToLocal() {
+        clearLocalAddResponse();
+        $(".response-text").append("<p>Added to my Movie List!</p>");
+        setTimeout(clearLocalAddResponse, 2000);
+    }
+
+    function alreadyAddedToLocal() {
+        clearLocalAddResponse();
+        $(".response-text").append("<p>Already added to my Movie List!</p>");
+        setTimeout(clearLocalAddResponse, 2000);
+    }
+
+    function clearLocalAddResponse() {
+        $(".response-text").empty();
+    }
 
     // search function
 
@@ -112,6 +129,10 @@ $(document).ready(function () {
         $("#movie-input").val("");
         var imdbID = $(this).attr("data-id");
         let queryUrl = `${url2}${imdbID}&apikey=${apiKey}`;
+
+        $('.img-search').removeClass('border');
+        $(this).addClass('border');
+
 
         $.ajax({
             url: queryUrl,
@@ -177,9 +198,11 @@ $(document).ready(function () {
             let boxOffice = $('<h4>').text(`Box Office Sales: ${data.BoxOffice}`);
             let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to Saved Movies");
             movieListButton.attr("data-title", movieTitle);
+            let movieButtonResponse = $('<div>');
+            movieButtonResponse.addClass('response-text');
 
             imageDiv.append(poster);
-            movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton);
+            movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton, movieButtonResponse);
 
         });
     }
@@ -227,7 +250,23 @@ $(document).ready(function () {
     // called the function to pick a random movie from the array and append to the button when page loads
     randomise();
 
+
+
     // added event listener to the randomise button to randomly pick a movie from the array and append to each button
     document.getElementById("random-btn").addEventListener("click", randomise);
+
+
+    function renderRandomMovie() {
+        $("#movie-input").val("");
+        searchedMovieDrop.empty();
+
+        const movieTitle = $('#random-render').html();
+
+        console.log(movieTitle);
+
+        displayMovieInfo(movieTitle);
+    };
+
+    renderRandomMovie()
 
 });
