@@ -152,7 +152,7 @@ $(document).ready(function () {
             plot.css("font-style", "italic");
             let director = $('<h4>').text(`Director: ${data.Director}`);
             let boxOffice = $('<h4>').text(`Box Office Sales: ${data.BoxOffice}`);
-            let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to your Movie List");
+            let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to Saved Movies");
             movieListButton.attr("data-title", movieTitle);
 
             imageDiv.append(poster);
