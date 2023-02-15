@@ -254,6 +254,11 @@ input {
     align-items: center;
 }
 
+.border {
+    border: 10px solid #94d2bd;
+    padding: 0px;
+}
+
 /* saved films */
 .list-group {
     margin-top: 20px;
@@ -297,8 +302,8 @@ input {
     border-radius: 10px;
     cursor: pointer;
 }
-  
-  .savedButton:hover {
+
+.savedButton:hover {
     font-family: 'Righteous', cursive;
     background-color: #94d2bd;
     width: 35%;

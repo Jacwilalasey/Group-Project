@@ -35,6 +35,8 @@ $(document).ready(function () {
 
         let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to Saved Movies");
         movieListButton.attr("data-title", data.Title);
+        let movieButtonResponse = $('<div>');
+        movieButtonResponse.addClass('response-text');
         let poster = $('<img>').attr('src', data.Poster);
         poster.addClass('img-main');
         let title = $('<h1>').text(data.Title);
@@ -46,24 +48,60 @@ $(document).ready(function () {
         let boxOffice = $('<h4>').text(`Box Office Sales: ${data.BoxOffice}`);
 
         imageDiv.append(poster);
-        movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton);
-        $("#movie-list-button").on("click", renderList);
+        movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton, movieButtonResponse);
+
     };
 
+    // renders movies from local storage to array used to populate local storage if local storage is not null
+
+    let list = JSON.parse(localStorage.getItem("movieTitle"))
     titleArray = []
-    function renderList () {
+
+    function localPush() {
+        if (list !== null) {
+
+            list.forEach((item) => {
+                titleArray.push(item);
+            });
+        } else {
+            return;
+        }
+    };
+
+    localPush();
+
+    // Saving movies to local storage and my list function / event listener to call this //
+
+    function renderList() {
         let title = $("#movie-list-button").attr("data-title");
         if (titleArray.includes(title)) {
+            alreadyAddedToLocal();
             return;
-        }else {
-        titleArray.push(title);
+        } else {
+            titleArray.unshift(title);
+            setTimeout(addedToLocal(), 4000);
         }
 
         localStorage.setItem("movieTitle", JSON.stringify(titleArray));
-        $("#movie-list-button").html("Added to Saved Movies");
     }
 
+    $(document).on("click", "#movie-list-button", renderList);
 
+    function addedToLocal() {
+        clearLocalAddResponse();
+        $(".response-text").append("<p>Added to my Movie List!</p>");
+        setTimeout(clearLocalAddResponse, 2000);
+    }
+
+    function alreadyAddedToLocal() {
+        clearLocalAddResponse();
+        $(".response-text").append("<p>Already added to my Movie List!</p>");
+        setTimeout(clearLocalAddResponse, 2000);
+    }
+
+    function clearLocalAddResponse() {
+        $(".response-text").empty();
+    }
 
     // search function
 
@@ -91,6 +129,10 @@ $(document).ready(function () {
         $("#movie-input").val("");
         var imdbID = $(this).attr("data-id");
         let queryUrl = `${url2}${imdbID}&apikey=${apiKey}`;
+
+        $('.img-search').removeClass('border');
+        $(this).addClass('border');
+
 
         $.ajax({
             url: queryUrl,
@@ -156,26 +198,11 @@ $(document).ready(function () {
             let boxOffice = $('<h4>').text(`Box Office Sales: ${data.BoxOffice}`);
             let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to Saved Movies");
             movieListButton.attr("data-title", movieTitle);
+            let movieButtonResponse = $('<div>');
+            movieButtonResponse.addClass('response-text');
 
             imageDiv.append(poster);
-            movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton);
-
-            $("#movie-list-button").on("click", renderList);
-
-
-            // $('.movie-image').html(`<img src="${data.Poster}" alt="${movieTitle} poster">`);
-            // $('.current-movie-data').html(`
-            // <h2 style='text-align: left'>${data.Title}</h2>
-            // <p style='text-align: left'><strong>Plot: </strong><i>"${data.Plot}"</i></p>
-            // <p style='text-align: left'><strong>Director: </strong>${data.Director}</p>
-            // <p style='text-align: left'><strong>Release Year: </strong>${data.Year}</p>
-            // <p style='text-align: left'><strong>Language: </strong>${data.Language}</p>
-            // <p style='text-align: left'><strong>Awards: </strong>${data.Awards}</p>
-            // <p style='text-align: left'><strong>Runtime: </strong>${data.Runtime}</p>
-            // <p style='text-align: left'><strong>Genre: </strong>${data.Genre}</p>
-            // <p style='text-align: left'><strong>Actors: </strong>${data.Actors}</p>
-            // <p style='text-align: left'><strong>IMBd Rating: </strong>${data.imdbRating}</p>
-            // `);
+            movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton, movieButtonResponse);
 
         });
     }
@@ -223,7 +250,23 @@ $(document).ready(function () {
     // called the function to pick a random movie from the array and append to the button when page loads
     randomise();
 
+
+
     // added event listener to the randomise button to randomly pick a movie from the array and append to each button
     document.getElementById("random-btn").addEventListener("click", randomise);
+
+
+    function renderRandomMovie() {
+        $("#movie-input").val("");
+        searchedMovieDrop.empty();
+
+        const movieTitle = $('#random-render').html();
+
+        console.log(movieTitle);
+
+        displayMovieInfo(movieTitle);
+    };
+
+    renderRandomMovie()
 
 });
