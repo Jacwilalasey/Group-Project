@@ -87,9 +87,13 @@ $(document).ready(function () {
 
     $(document).on("click", "#movie-list-button", renderList);
 
+    // Fucntions to add text confirming movie added to or already on movie list/local storage
+
     function addedToLocal() {
         clearLocalAddResponse();
-        $(".response-text").append("<p>Added to my Movie List!</p>");
+        let addResponseText = $("<p>").text('Added to my Movie List!')
+        addResponseText.addClass('');
+        $(".response-text").append(addResponseText);
         setTimeout(clearLocalAddResponse, 2000);
     }
 
