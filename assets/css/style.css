@@ -147,6 +147,11 @@ input {
     border-radius: 10px;
 }
 
+.randomButton:focus {
+    background-color: hsl(38, 15%, 57%);
+    border-color: #94d2bd;
+}
+
 #random-btn {
     font-family: 'Righteous', cursive;
     width: 100%;
@@ -314,4 +319,8 @@ input {
     margin-top: 30px;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.saveResponse {
+    font-family: 'Righteous', cursive;
 }
