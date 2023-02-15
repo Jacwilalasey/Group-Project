@@ -91,15 +91,17 @@ $(document).ready(function () {
 
     function addedToLocal() {
         clearLocalAddResponse();
-        let addResponseText = $("<p>").text('Added to my Movie List!')
-        addResponseText.addClass('');
-        $(".response-text").append(addResponseText);
+        let addedText = $("<p>").text('Added to my Movie List!')
+        addedText.addClass('saveResponse');
+        $(".response-text").append(inline);
         setTimeout(clearLocalAddResponse, 2000);
     }
 
     function alreadyAddedToLocal() {
         clearLocalAddResponse();
-        $(".response-text").append("<p>Already added to my Movie List!</p>");
+        let notAdded = $("<p>").text('Already added to my Movie List!');
+        notAdded.addClass('saveResponse')
+        $(".response-text").append(notAddedText);
         setTimeout(clearLocalAddResponse, 2000);
     }
 
