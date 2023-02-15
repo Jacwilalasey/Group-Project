@@ -7,15 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
   <link rel="icon" href="assets/images/TMDLogo.png">
-
-  <title>The Movie Database</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Righteous&display=swap" rel="stylesheet">
-  <script src="./assets/js/script.js"></script>
+  <title>The Movie Database</title>
+
+
 </head>
 
 <body>
@@ -50,7 +49,7 @@
           <!-- list of searchable genres and randomise genres button -->
           <div class="box table-box">
             <div class="genre-container">
-              <h3 class="randSelect">Pick a Movie!</h3>
+              <h3 class="randSelect">Suggested Movies</h3>
               <button class="button randomButton" id="random-render"></button>
               <button class="button randomButton"></button>
               <button class="button randomButton"></button>
@@ -58,13 +57,15 @@
             </div>
             <div class="break"></div>
             <div>
-              <a href="./index2.html" rel="no-referrer"><button class="button movieList" id="movieList">Saved
-                  Movies</button></a>
+              <a href="./index2.html" rel="no-referrer"><button class="button movieList" id="movieList">Favourites</button></a>
             </div>
           </div>
         </div>
 
         <!-- query return box -->
+        <div id="notiSaved" >Added to Favourites!</div>
+        <div id="notiNot" >Already Saved!</div>
+
         <div class="column">
           <div id="search-data" class="box content columns">
             <div class="column is-two-fifths is-justify-content-center movie-image"></div>
@@ -86,7 +87,7 @@
 
 
 
-
+  <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

@@ -33,7 +33,7 @@ $(document).ready(function () {
         imageDiv.empty();
         movieInfo.empty();
 
-        let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to Saved Movies");
+        let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to Favourites");
         movieListButton.attr("data-title", data.Title);
         let movieButtonResponse = $('<div>');
         movieButtonResponse.addClass('response-text');
@@ -87,22 +87,24 @@ $(document).ready(function () {
 
     $(document).on("click", "#movie-list-button", renderList);
 
-    // Fucntions to add text confirming movie added to or already on movie list/local storage
-
     function addedToLocal() {
         clearLocalAddResponse();
-        let addedText = $("<p>").text('Added to my Movie List!')
-        addedText.addClass('saveResponse');
-        $(".response-text").append(inline);
-        setTimeout(clearLocalAddResponse, 2000);
+        let notiSlide = document.getElementById('movie-list-button');
+        let slideout = document.getElementById('notiSaved');
+
+        notiSlide.onclick = function() {
+            slideout.classList.toggle('visible');
+          };
     }
 
     function alreadyAddedToLocal() {
         clearLocalAddResponse();
-        let notAdded = $("<p>").text('Already added to my Movie List!');
-        notAdded.addClass('saveResponse')
-        $(".response-text").append(notAddedText);
-        setTimeout(clearLocalAddResponse, 2000);
+        let notiSlide = document.getElementById('movie-list-button');
+        let slideout = document.getElementById('notiNot');
+
+        notiSlide.onclick = function() {
+            slideout.classList.toggle('visible');
+          };
     }
 
     function clearLocalAddResponse() {
