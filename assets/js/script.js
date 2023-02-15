@@ -33,6 +33,8 @@ $(document).ready(function () {
         imageDiv.empty();
         movieInfo.empty();
 
+        let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to your Movie List");
+        movieListButton.attr("data-title", data.Title);
         let poster = $('<img>').attr('src', data.Poster);
         poster.addClass('img-main');
         let title = $('<h1>').text(data.Title);
@@ -44,9 +46,23 @@ $(document).ready(function () {
         let boxOffice = $('<h4>').text(`Box Office Sales: ${data.BoxOffice}`);
 
         imageDiv.append(poster);
-        movieInfo.append(title, plot, released, genre, director, boxOffice)
-
+        movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton);
+        $("#movie-list-button").on("click", renderList);
     };
+
+    titleArray = []
+    function renderList () {
+        console.log("hey")
+        let title = $("#movie-list-button").attr("data-title");
+        titleArray.push(title);
+        console.log(title);
+
+        localStorage.setItem("movieTitle", JSON.stringify(titleArray));
+
+    }
+
+
+
     // search function
 
     $("#search-button").click(function (event) {
@@ -108,7 +124,7 @@ $(document).ready(function () {
         "The Incredible Hulk",
         "The Avengers",
         "Iron Man",
-        "The Avengers: Endgame"
+        "Mad Max: Fury Road"
     ];
 
     // Assigned all movie buttons to a variable 
@@ -136,9 +152,14 @@ $(document).ready(function () {
             plot.css("font-style", "italic");
             let director = $('<h4>').text(`Director: ${data.Director}`);
             let boxOffice = $('<h4>').text(`Box Office Sales: ${data.BoxOffice}`);
+            let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to your Movie List");
+            movieListButton.attr("data-title", movieTitle);
 
             imageDiv.append(poster);
-            movieInfo.append(title, plot, released, genre, director, boxOffice)
+            movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton);
+
+            $("#movie-list-button").on("click", renderList);
+
 
             // $('.movie-image').html(`<img src="${data.Poster}" alt="${movieTitle} poster">`);
             // $('.current-movie-data').html(`
@@ -161,6 +182,7 @@ $(document).ready(function () {
 
     $('.randomButton').click(function () {
         $("#movie-input").val("");
+        searchedMovieDrop.empty();
         const movieTitle = $(this).html();
         displayMovieInfo(movieTitle);
     });
