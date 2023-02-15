@@ -33,7 +33,7 @@ $(document).ready(function () {
         imageDiv.empty();
         movieInfo.empty();
 
-        let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to your Movie List");
+        let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to Saved Movies");
         movieListButton.attr("data-title", data.Title);
         let poster = $('<img>').attr('src', data.Poster);
         poster.addClass('img-main');
@@ -52,13 +52,15 @@ $(document).ready(function () {
 
     titleArray = []
     function renderList () {
-        console.log("hey")
         let title = $("#movie-list-button").attr("data-title");
+        if (titleArray.includes(title)) {
+            return;
+        }else {
         titleArray.push(title);
-        console.log(title);
+        }
 
         localStorage.setItem("movieTitle", JSON.stringify(titleArray));
-
+        $("#movie-list-button").html("Added to Saved Movies");
     }
 
 
