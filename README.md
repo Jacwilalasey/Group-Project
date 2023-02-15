@@ -1,19 +1,17 @@
-
-Developing a movie soundtrack identification tool using HTML, CSS, JS, Jquery and APIs
-
 # The Movie Database
 This project is a simple web application that allows users to search for movies using the OMDb API and displays the results on the page. Users can also add movies to a list of saved movies and view them later.
 
 ## Languages and Frameworks Used
-HTML
-CSS
-JavaScript
-jQuery
-Bootstrap
+* HTML
+* CSS
+* JavaScript
+* jQuery
+* Bootstrap
 
 ### Usage
 To use this application, simply clone this repository to your computer:
-git clone git@github.com:Jacwilalasey/Group-Project.git
+* git clone git@github.com:Jacwilalasey/Group-Project.git
+
 Then, open the index.html file in your web browser to view the app.
 
 ### Here's how the app works:
