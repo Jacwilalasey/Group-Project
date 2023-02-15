@@ -20,18 +20,21 @@
         <div class="hero-body">
           <div class="container">
             <h1 class="title">The Movie Database</h1>
-            <p>
-              <a class="btn btn-lg btn-clear-light soft-transition" href="https://github.com/Jacwilalasey/Group-Project"
-                role="button" target="_blank">GITHUB REPO</a>
-              <span> | </span>
-              <a class="btn btn-lg btn-clear-light soft-transition" href="https://www.omdbapi.com/" role="button"
-                target="_blank">OMDB API</a>
-            </p>
           </div>
         </div>
-      </section>
-      <h1 class = "">List of Movies</h1>
-      <div id="movieList" class="list-group"></div>
+    </section>
+
+    <section class="wrapperSect">
+        <div class="wrapper">
+          <h2>Saved Movies</h2>
+          <div id="movieList" class="list-group"></div>
+    
+            <a href="./index.html"><button class="button savedButton">Go Back</button></a>
+            <button class="button savedButton" id="clear">Clear Movies</button>
+        </div>  
+    </section>
+
+
       
     <script>
         let list = JSON.parse(localStorage.getItem("movieTitle"))

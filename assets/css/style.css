@@ -100,6 +100,7 @@ input {
 }
 
 #search-button {
+    font-family: 'Righteous', cursive;
     width: 100%;
     margin-bottom: 20px;
     margin-top: 10px;
@@ -109,6 +110,7 @@ input {
 
 #search-button:hover,
 .more-info-button:hover {
+    font-family: 'Righteous', cursive;
     background-color: #94d2bd;
     width: 100%;
 }
@@ -146,6 +148,7 @@ input {
 }
 
 #random-btn {
+    font-family: 'Righteous', cursive;
     width: 100%;
     margin-bottom: 20px;
     margin-top: 10px;
@@ -153,6 +156,7 @@ input {
 }
 
 #random-btn:hover {
+    font-family: 'Righteous', cursive;
     background-color: #94d2bd;
     width: 100%;
     margin-bottom: 20px;
@@ -160,6 +164,52 @@ input {
     border-radius: 10px;
 }
 
+.break {
+    border-top: 3px solid #edede9;
+}
+
+.movieList {
+    font-family: 'Righteous', cursive;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.movieList:hover {
+    font-family: 'Righteous', cursive;
+    background-color: #94d2bd;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+#movie-list-button {
+    font-family: 'Righteous', cursive;
+    font-size: 16px;
+    width: 40%;
+    height: 42px;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#movie-list-button:hover {
+    font-family: 'Righteous', cursive;
+    background-color: #94d2bd;
+    width: 40%;
+    height: 42px;
+    display: inline !important;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 2px #e9d8a6;
+}
 
 /* MOVIE DATA BOX */
 
@@ -175,8 +225,8 @@ input {
 }
 
 .img-main {
-    max-height: 336px;
-    margin-left: 65px;
+    max-height: 400px;
+    margin-left: 30px;
 }
 
 .img-search {
@@ -202,4 +252,61 @@ input {
     padding: 5px;
     margin: 9px;
     align-items: center;
+}
+
+/* saved films */
+.list-group {
+    margin-top: 20px;
+    margin-left: 38px;
+    width: 80%;
+    text-align: center;
+}
+
+.list-group-item {
+    background-color: #edede9;
+}
+
+.wrapperSect {
+    background-color: #e9d8a6;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.wrapper {
+    background-color: #edede9;
+    border: 5px solid #94d2bd;
+    border-radius: 10px;
+    margin: 0 auto 0 auto;
+    max-width: 400px;
+
+}
+
+.wrapper h2 {
+    font-family: 'Righteous', cursive;
+    margin-top: 10px;
+}
+
+.savedButton {
+    font-family: 'Righteous', cursive;
+    font-size: 16px;
+    width: 35%;
+    height: 42px;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+  
+  .savedButton:hover {
+    font-family: 'Righteous', cursive;
+    background-color: #94d2bd;
+    width: 35%;
+    height: 42px;
+    display: inline !important;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    cursor: pointer;
 }
