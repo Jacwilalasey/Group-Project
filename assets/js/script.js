@@ -10,6 +10,8 @@ $(document).ready(function () {
     let movieInfo = $(".current-movie-data")
     let searchedMovieDrop = $("#populate-searches")
 
+    // SEARCH FUNCTIONS
+
     //  Renders searched movie posters to page
 
     function renderSearch(data) {
@@ -25,6 +27,30 @@ $(document).ready(function () {
             searchedMovieDrop.append(searchedMovie);
         }
     };
+
+
+    // search function
+
+    $("#search-button").click(function (event) {
+        event.preventDefault();
+        imageDiv.empty();
+        movieInfo.empty();
+        let searchInput = $('#movie-input').val().trim()
+        let queryUrl = `${url}${searchInput}&apikey=${apiKey}`;
+
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        })
+            .then(function (response) {
+
+                let search = response.Search
+                renderSearch(search);
+            });
+
+    });
+
+    // SEARCHED MOVIE POSTER RENDER FUCTIONS
 
     // Renders movie information to page
 
@@ -54,6 +80,35 @@ $(document).ready(function () {
         bookmark();
 
     };
+
+    // movie data function
+
+    function movieData() {
+        $("#movie-input").val("");
+        var imdbID = $(this).attr("data-id");
+        let queryUrl = `${url2}${imdbID}&apikey=${apiKey}`;
+
+        $('.img-search').removeClass('border');
+        $(this).addClass('border');
+
+        $('.img-search').click(function () {
+        })
+
+
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        })
+            .then(function (response) {
+                renderMovieInfo(response);
+            });
+
+    };
+
+    $(document).on("click", ".img-search", movieData);
+
+
+    // LOCAL STORAGE // MY FAVOURITES FUNCTION
 
     // renders movies from local storage to array used to populate local storage if local storage is not null
 
@@ -91,74 +146,17 @@ $(document).ready(function () {
     $(document).on("click", "#movie-list-button", renderList);
 
     function addedToLocal() {
-
+        $('#movie-list-button').text('Added to Favourites');
         let slideout = document.getElementById('notiSaved');
         slideout.classList.toggle('visible');
         $('#movie-list-button').prop('disabled', true);
         setTimeout(function () {
             slideout.classList.remove('visible');
         }, 2000);
+
     }
 
-    // function alreadyAddedToLocal() {
-    //     let slideout = document.getElementById('notiNot');
-    //     slideout.classList.toggle('visible');
-    //     setTimeout(function () {
-    //         slideout.classList.remove('visible');
-    //     }, 2000);
-    // }
-
-
-    // search function
-
-    $("#search-button").click(function (event) {
-        event.preventDefault();
-        imageDiv.empty();
-        movieInfo.empty();
-        let searchInput = $('#movie-input').val().trim()
-        let queryUrl = `${url}${searchInput}&apikey=${apiKey}`;
-
-        $.ajax({
-            url: queryUrl,
-            method: "GET"
-        })
-            .then(function (response) {
-
-                let search = response.Search
-                renderSearch(search);
-            });
-
-    });
-
-    // movie data function
-
-    function movieData() {
-        $("#movie-input").val("");
-        var imdbID = $(this).attr("data-id");
-        let queryUrl = `${url2}${imdbID}&apikey=${apiKey}`;
-
-        $('.img-search').removeClass('border');
-        $(this).addClass('border');
-
-    // trying to get the searched image to change opacity to 1 on click
-        $('.img-search').click(function(){
-            $('.img-search').css('opacity', 1);
-        })
-
-
-        $.ajax({
-            url: queryUrl,
-            method: "GET"
-        })
-            .then(function (response) {
-                renderMovieInfo(response);
-            });
-
-    };
-
-    $(document).on("click", ".img-search", movieData);
-
-    // RANDOM MOVIE BUTTON GENERATOR
+    // RANDOM MOVIE BUTTON GENERATOR + RENDER FUNCTIONS
 
     // array of random movies
     let randomMovie = [
@@ -296,6 +294,9 @@ $(document).ready(function () {
 
     renderRandomMovie()
 
+
+
+
     // bookmark function - disables add to favourites button and sends notification when a movie is already on favourites list
 
     function bookmark() {
@@ -303,8 +304,9 @@ $(document).ready(function () {
         list.forEach(function (item) {
             if (item === $('.movie-title-fetch').html()) {
                 $('.bookmark-div').empty();
+                $('#movie-list-button').text('Added to Favourites');
                 $('#movie-list-button').prop('disabled', true);
-                alreadyAddedToLocal()
+                // alreadyAddedToLocal()
             }
         })
     };

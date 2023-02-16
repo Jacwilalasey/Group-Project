@@ -225,6 +225,7 @@ input {
     margin-top: 20px;
     border-radius: 10px;
     cursor: not-allowed;
+    background-color: #94d2bd;
 }
 
 /* MOVIE DATA BOX */
@@ -281,15 +282,17 @@ input {
 }
 
 .img-search:hover {
-    padding: 10px;
+    padding: 0px;
     border: 5px solid #edede9;
     border-radius: 10px;
     opacity: 1;
+    border: 10px solid #94d2bd;
 }
 
 .border {
     border: 10px solid #94d2bd;
     padding: 0px;
+    opacity: 1;
 }
 
 /* saved films */
