@@ -324,6 +324,17 @@ input {
 
 /* bookmark notification */
 
+.bookmark {
+    scale: 20%;
+    position: absolute;
+    top: -260px;
+    left: 970px
+}
+
+.hide {
+    display: none;
+}
+
 .visible {
     animation: movein 0.5s ease forwards, moveout 0.5s 3s ease forwards;
 }
@@ -359,12 +370,21 @@ input {
 }
 
 @keyframes movein {
-    from { left: -200px; }
-    to   { left: 10px; }
+    from {
+        left: -200px;
+    }
+
+    to {
+        left: 10px;
+    }
 }
 
 @keyframes moveout {
-    from { left: 10px; }
-    to   { left: -200px; }
+    from {
+        left: 10px;
+    }
+
+    to {
+        left: -200px;
+    }
 }
-  
