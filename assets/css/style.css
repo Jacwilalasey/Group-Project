@@ -216,6 +216,18 @@ input {
     box-shadow: 0px 0px 10px 2px #e9d8a6;
 }
 
+#movie-list-button:disabled {
+    font-family: 'Righteous', cursive;
+    font-size: 16px;
+    width: 40%;
+    height: 42px;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: not-allowed;
+}
+
 /* MOVIE DATA BOX */
 
 #search-data {
@@ -234,22 +246,17 @@ input {
     margin-left: 30px;
 }
 
-.img-search {
-    width: 100%;
-    padding: 10px;
-}
-
-
 .current-movie-data {
     margin-right: 60px;
     margin-top: 20px;
 }
 
 /* SEARCHED MOVIES AT BOTTOM */
-
-.more-info-button {
-    width: 100%;
+#populate-searches {
+    display: flex;
+    justify-content: space-between;
 }
+
 
 .inline {
     font-family: 'Righteous', cursive;
@@ -258,6 +265,13 @@ input {
     padding: 5px;
     margin: 9px;
     align-items: center;
+}
+
+.img-search {
+    width: 220px;
+    height: 325px;
+    padding: 10px;
+
 }
 
 .border {
@@ -351,7 +365,7 @@ input {
     align-items: center;
     position: fixed;
     top: 100px;
-    left: -200px;
+    right: -200px;
 }
 
 #notiNot {
@@ -366,25 +380,25 @@ input {
     align-items: center;
     position: fixed;
     top: 100px;
-    left: -200px;
+    right: -200px;
 }
 
 @keyframes movein {
     from {
-        left: -200px;
+        right: -200px;
     }
 
     to {
-        left: 10px;
+        right: 10px;
     }
 }
 
 @keyframes moveout {
     from {
-        left: 10px;
+        right: 10px;
     }
 
     to {
-        left: -200px;
+        right: -200px;
     }
 }
