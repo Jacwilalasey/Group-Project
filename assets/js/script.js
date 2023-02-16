@@ -100,13 +100,13 @@ $(document).ready(function () {
         }, 2000);
     }
 
-    function alreadyAddedToLocal() {
-        let slideout = document.getElementById('notiNot');
-        slideout.classList.toggle('visible');
-        setTimeout(function () {
-            slideout.classList.remove('visible');
-        }, 2000);
-    }
+    // function alreadyAddedToLocal() {
+    //     let slideout = document.getElementById('notiNot');
+    //     slideout.classList.toggle('visible');
+    //     setTimeout(function () {
+    //         slideout.classList.remove('visible');
+    //     }, 2000);
+    // }
 
 
     // search function
@@ -139,6 +139,11 @@ $(document).ready(function () {
 
         $('.img-search').removeClass('border');
         $(this).addClass('border');
+
+    // trying to get the searched image to change opacity to 1 on click
+        $('.img-search').click(function(){
+            $('.img-search').css('opacity', 1);
+        })
 
 
         $.ajax({
@@ -175,7 +180,21 @@ $(document).ready(function () {
         "The Incredible Hulk",
         "The Avengers",
         "Iron Man",
-        "Mad Max: Fury Road"
+        "Mad Max: Fury Road",
+        "Dirty Dancing",
+        "Road House",
+        "The Fifth Element",
+        "The Whale",
+        "Men",
+        "Babylon",
+        "Get Out",
+        "Mid90s",
+        "Uncut Gems",
+        "Ex Machina",
+        "Moonlight",
+        "Midsommar",
+        "Good Time",
+        "Monty Python"
     ];
 
     // Assigned all movie buttons to a variable 
