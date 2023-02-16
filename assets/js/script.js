@@ -40,6 +40,7 @@ $(document).ready(function () {
         let poster = $('<img>').attr('src', data.Poster);
         poster.addClass('img-main');
         let title = $('<h1>').text(data.Title);
+        title.addClass('movie-title-fetch');
         let released = $('<h4>').text(`Released: ${data.Released}`);
         let genre = $('<h4>').text(`Genre: ${data.Genre}`);
         let plot = $('<p>').text(`"${data.Plot}"`);
@@ -49,6 +50,8 @@ $(document).ready(function () {
 
         imageDiv.append(poster);
         movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton, movieButtonResponse);
+
+        bookmark();
 
     };
 
@@ -79,7 +82,7 @@ $(document).ready(function () {
             return;
         } else {
             titleArray.unshift(title);
-            setTimeout(addedToLocal(), 4000);
+            addedToLocal();
         }
 
         localStorage.setItem("movieTitle", JSON.stringify(titleArray));
@@ -88,28 +91,23 @@ $(document).ready(function () {
     $(document).on("click", "#movie-list-button", renderList);
 
     function addedToLocal() {
-        clearLocalAddResponse();
-        let notiSlide = document.getElementById('movie-list-button');
-        let slideout = document.getElementById('notiSaved');
 
-        notiSlide.onclick = function() {
-            slideout.classList.toggle('visible');
-          };
+        let slideout = document.getElementById('notiSaved');
+        slideout.classList.toggle('visible');
+        $('#movie-list-button').prop('disabled', true);
+        setTimeout(function () {
+            slideout.classList.remove('visible');
+        }, 2000);
     }
 
     function alreadyAddedToLocal() {
-        clearLocalAddResponse();
-        let notiSlide = document.getElementById('movie-list-button');
         let slideout = document.getElementById('notiNot');
-
-        notiSlide.onclick = function() {
-            slideout.classList.toggle('visible');
-          };
+        slideout.classList.toggle('visible');
+        setTimeout(function () {
+            slideout.classList.remove('visible');
+        }, 2000);
     }
 
-    function clearLocalAddResponse() {
-        $(".response-text").empty();
-    }
 
     // search function
 
@@ -129,6 +127,7 @@ $(document).ready(function () {
                 let search = response.Search
                 renderSearch(search);
             });
+
     });
 
     // movie data function
@@ -171,7 +170,7 @@ $(document).ready(function () {
         "The Terminator",
         "Gladiator",
         "Pulp Fiction",
-        "Wolf of Wall Street",
+        "The Wolf of Wall Street",
         "Hateful Eight",
         "The Incredible Hulk",
         "The Avengers",
@@ -198,19 +197,22 @@ $(document).ready(function () {
             let poster = $('<img>').attr('src', data.Poster);
             poster.addClass('img-main');
             let title = $('<h1>').text(data.Title);
+            title.addClass('movie-title-fetch');
             let released = $('<h4>').text(`Released: ${data.Released}`);
             let genre = $('<h4>').text(`Genre: ${data.Genre}`);
             let plot = $('<p>').text(`"${data.Plot}"`);
             plot.css("font-style", "italic");
             let director = $('<h4>').text(`Director: ${data.Director}`);
             let boxOffice = $('<h4>').text(`Box Office Sales: ${data.BoxOffice}`);
-            let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to Saved Movies");
+            let movieListButton = $("<button>").attr("id", "movie-list-button").text("Add to Favourites");
             movieListButton.attr("data-title", movieTitle);
             let movieButtonResponse = $('<div>');
             movieButtonResponse.addClass('response-text');
 
             imageDiv.append(poster);
             movieInfo.append(title, plot, released, genre, director, boxOffice, movieListButton, movieButtonResponse);
+
+            bookmark();
 
         });
     }
@@ -263,18 +265,29 @@ $(document).ready(function () {
     // added event listener to the randomise button to randomly pick a movie from the array and append to each button
     document.getElementById("random-btn").addEventListener("click", randomise);
 
+    // renders data from first random button on load
 
     function renderRandomMovie() {
         $("#movie-input").val("");
         searchedMovieDrop.empty();
-
         const movieTitle = $('#random-render').html();
-
         console.log(movieTitle);
-
         displayMovieInfo(movieTitle);
     };
 
     renderRandomMovie()
+
+    // bookmark function - disables add to favourites button and sends notification when a movie is already on favourites list
+
+    function bookmark() {
+        let list = JSON.parse(localStorage.getItem("movieTitle"))
+        list.forEach(function (item) {
+            if (item === $('.movie-title-fetch').html()) {
+                $('.bookmark-div').empty();
+                $('#movie-list-button').prop('disabled', true);
+                alreadyAddedToLocal()
+            }
+        })
+    };
 
 });
