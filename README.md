@@ -28,7 +28,7 @@ Here are the links to the GitHub repository and GitHub Pages for this project:
 
 [Repository](https://github.com/Jacwilalasey/Group-Project)
 
-[Github Pages](https://jacwilalasey.github.io/Group-Project/)
+[Github Pages](https://jacwilalasey.github.io/The-Movie-Database/)
 
 ### Demo
 Here is a gif demonstrating the functionality of the app:
